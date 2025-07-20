@@ -3,9 +3,21 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import React from 'react'
 
 import type { Header } from '@/payload-types'
+import { Logo } from '@/components/Logo/Logo'
+import { HeaderNav } from './Nav'
+import Link from 'next/link'
 
 export async function Header() {
   const headerData: Header = await getCachedGlobal('header', 1)()
 
-  return <HeaderClient data={headerData} />
+  return (
+    <header className="relative z-20 border-b-[1px] border-b-[#BEBEBE]">
+      <div className="px-16 py-6 flex justify-between">
+        <Link href="/">
+          <Logo loading="eager" priority="high" />
+        </Link>
+        <HeaderNav data={headerData} />
+      </div>
+    </header>
+  )
 }

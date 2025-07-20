@@ -28,7 +28,6 @@ const config = {
   ],
   theme: {
     container: {
-      center: true,
       padding: {
         '2xl': '2rem',
         DEFAULT: '1rem',
@@ -60,7 +59,10 @@ const config = {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
-        background: 'hsl(var(--background))',
+        'paper-100': '#FFFBF4',
+        'paper-200': '#FFF2DF',
+        pumpkin: '#E06500',
+        background: 'var(--background)',
         border: 'hsla(var(--border))',
         card: {
           DEFAULT: 'hsl(var(--card))',
@@ -70,7 +72,7 @@ const config = {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
-        foreground: 'hsl(var(--foreground))',
+        foreground: 'var(--foreground)',
         input: 'hsl(var(--input))',
         muted: {
           DEFAULT: 'hsl(var(--muted))',

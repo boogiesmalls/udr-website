@@ -14,8 +14,8 @@
   }
 
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: #FFFBF4;
+    --foreground: #1E1E1E;
 
     --card: 240 5% 96%;
     --card-foreground: 222.2 84% 4.9%;

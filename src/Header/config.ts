@@ -16,6 +16,22 @@ export const Header: GlobalConfig = {
         link({
           appearances: false,
         }),
+        {
+          name: 'subNavItems',
+          type: 'array',
+          fields: [
+            link({
+              appearances: false,
+            }),
+          ],
+          maxRows: 4,
+          admin: {
+            initCollapsed: true,
+            components: {
+              RowLabel: '@/Header/RowLabel#RowLabel',
+            },
+          },
+        },
       ],
       maxRows: 6,
       admin: {
