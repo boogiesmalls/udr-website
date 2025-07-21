@@ -13,11 +13,40 @@ export const Header: GlobalConfig = {
       name: 'navItems',
       type: 'array',
       fields: [
+        {
+          name: 'type',
+          type: 'select',
+          defaultValue: 'singleLink',
+          label: 'Nav Item Type',
+          options: [
+            {
+              label: 'Single Link',
+              value: 'singleLink',
+            },
+            {
+              label: 'Dropdown Menu',
+              value: 'dropDownMenu',
+            },
+          ],
+        },
         link({
           appearances: false,
+          overrides: {
+            admin: {
+              condition: (_, { type } = {}) => type === 'singleLink',
+            },
+          },
         }),
         {
-          name: 'subNavItems',
+          name: 'dropDownTitle',
+          type: 'text',
+          label: 'Nav Dropdown Title',
+          admin: {
+            condition: (_, { type } = {}) => type === 'dropDownMenu',
+          },
+        },
+        {
+          name: 'dropDownNavItems',
           type: 'array',
           fields: [
             link({
@@ -27,6 +56,7 @@ export const Header: GlobalConfig = {
           maxRows: 4,
           admin: {
             initCollapsed: true,
+            condition: (_, { type } = {}) => type === 'dropDownMenu',
             components: {
               RowLabel: '@/Header/RowLabel#RowLabel',
             },

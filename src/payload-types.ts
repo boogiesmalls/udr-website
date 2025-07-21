@@ -1554,7 +1554,8 @@ export interface Header {
   id: number;
   navItems?:
     | {
-        link: {
+        type?: ('singleLink' | 'dropDownMenu') | null;
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -1569,7 +1570,8 @@ export interface Header {
           url?: string | null;
           label: string;
         };
-        subNavItems?:
+        dropDownTitle?: string | null;
+        dropDownNavItems?:
           | {
               link: {
                 type?: ('reference' | 'custom') | null;
@@ -1628,6 +1630,7 @@ export interface HeaderSelect<T extends boolean = true> {
   navItems?:
     | T
     | {
+        type?: T;
         link?:
           | T
           | {
@@ -1637,7 +1640,8 @@ export interface HeaderSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
-        subNavItems?:
+        dropDownTitle?: T;
+        dropDownNavItems?:
           | T
           | {
               link?:
