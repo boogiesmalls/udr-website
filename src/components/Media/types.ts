@@ -10,6 +10,7 @@ export interface Props {
   htmlElement?: ElementType | null
   pictureClassName?: string
   imgClassName?: string
+  rounded?: 'none' | 'top' | 'right' | 'left' | 'bottom' | null
   onClick?: () => void
   onLoad?: () => void
   loading?: 'lazy' | 'eager' // for NextImage only
