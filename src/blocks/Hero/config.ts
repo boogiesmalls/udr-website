@@ -1,4 +1,4 @@
-import type { Field } from 'payload'
+import type { Block } from 'payload'
 
 import {
   FixedToolbarFeature,
@@ -9,9 +9,9 @@ import {
 
 import { linkGroup } from '@/fields/linkGroup'
 
-export const hero: Field = {
-  name: 'hero',
-  type: 'group',
+export const Hero: Block = {
+  slug: 'hero',
+  interfaceName: 'HeroBlock',
   fields: [
     {
       name: 'richText',
@@ -40,5 +40,8 @@ export const hero: Field = {
       required: false,
     },
   ],
-  label: false,
+  labels: {
+    plural: 'Heros',
+    singular: 'Hero',
+  },
 }

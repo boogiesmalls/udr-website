@@ -1,13 +1,12 @@
-'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import type { Page } from '@/payload-types'
+import type { HeroBlock as HeroBlockProps } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
-export const Hero: React.FC<Page['hero']> = ({ links, media, richText }) => {
+export const HeroBlock: React.FC<HeroBlockProps> = ({ links, media, richText }) => {
   return (
     <div className="relative flex items-center justify-between px-16 gap-20">
       <div className="mb-8 z-10 relative flex items-center justify-center">
