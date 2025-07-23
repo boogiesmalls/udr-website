@@ -148,7 +148,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: number;
   title: string;
-  layout: (HeroBlock | CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (HeroBlock | ContentBlock | HeroGridBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -208,7 +208,10 @@ export interface HeroBlock {
         id?: string | null;
       }[]
     | null;
-  media?: (number | null) | Media;
+  mediaGroup?: {
+    mediaRounded?: ('none' | 'top' | 'left' | 'right' | 'bottom') | null;
+    media?: (number | null) | Media;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
@@ -400,54 +403,6 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock".
- */
-export interface CallToActionBlock {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cta';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
@@ -498,73 +453,62 @@ export interface ContentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
+ * via the `definition` "HeroGridBlock".
  */
-export interface MediaBlock {
-  media: number | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock".
- */
-export interface ArchiveBlock {
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  populateBy?: ('collection' | 'selection') | null;
-  relationTo?: 'posts' | null;
-  categories?: (number | Category)[] | null;
-  limit?: number | null;
-  selectedDocs?:
+export interface HeroGridBlock {
+  gridItems?:
     | {
-        relationTo: 'posts';
-        value: number | Post;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        media: number | Media;
+        cardTitles?: {
+          title?: string | null;
+          subtitle?: string | null;
+        };
+        id?: string | null;
       }[]
     | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'archive';
+  blockType: 'heroGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FormBlock".
+ * via the `definition` "redirects".
  */
-export interface FormBlock {
-  form: number | Form;
-  enableIntro?: boolean | null;
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'formBlock';
+export interface Redirect {
+  id: number;
+  /**
+   * You will need to rebuild the website when changing this field.
+   */
+  from: string;
+  to?: {
+    type?: ('reference' | 'custom') | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -737,32 +681,6 @@ export interface Form {
         id?: string | null;
       }[]
     | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
- */
-export interface Redirect {
-  id: number;
-  /**
-   * You will need to rebuild the website when changing this field.
-   */
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: number | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: number | Post;
-        } | null);
-    url?: string | null;
-  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1005,11 +923,8 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         hero?: T | HeroBlockSelect<T>;
-        cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
-        mediaBlock?: T | MediaBlockSelect<T>;
-        archive?: T | ArchiveBlockSelect<T>;
-        formBlock?: T | FormBlockSelect<T>;
+        heroGrid?: T | HeroGridBlockSelect<T>;
       };
   meta?:
     | T
@@ -1046,30 +961,11 @@ export interface HeroBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  media?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock_select".
- */
-export interface CallToActionBlockSelect<T extends boolean = true> {
-  richText?: T;
-  links?:
+  mediaGroup?:
     | T
     | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
+        mediaRounded?: T;
+        media?: T;
       };
   id?: T;
   blockName?: T;
@@ -1102,35 +998,29 @@ export interface ContentBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock_select".
+ * via the `definition` "HeroGridBlock_select".
  */
-export interface MediaBlockSelect<T extends boolean = true> {
-  media?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock_select".
- */
-export interface ArchiveBlockSelect<T extends boolean = true> {
-  introContent?: T;
-  populateBy?: T;
-  relationTo?: T;
-  categories?: T;
-  limit?: T;
-  selectedDocs?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FormBlock_select".
- */
-export interface FormBlockSelect<T extends boolean = true> {
-  form?: T;
-  enableIntro?: T;
-  introContent?: T;
+export interface HeroGridBlockSelect<T extends boolean = true> {
+  gridItems?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        media?: T;
+        cardTitles?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1739,6 +1629,16 @@ export interface CodeBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'code';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock".
+ */
+export interface MediaBlock {
+  media: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

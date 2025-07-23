@@ -55,15 +55,13 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
+        ash: '#1E1E1E',
         'paper-100': '#FFFBF4',
         'paper-200': '#FFF2DF',
         pumpkin: '#E06500',
         marigold: '#FBAF3B',
         'marigold-dark': '#E68C02',
+        feather: '#BEBEBE',
         background: '#FFFBF4',
         border: 'hsla(var(--border))',
         foreground: 'var(--foreground)',
@@ -71,6 +69,9 @@ const config = {
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
+      },
+      transitionDuration: {
+        scale: '0.4s',
       },
       keyframes: {
         'accordion-down': {

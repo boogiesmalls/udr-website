@@ -34,10 +34,44 @@ export const Hero: Block = {
       },
     }),
     {
-      name: 'media',
-      type: 'upload',
-      relationTo: 'media',
-      required: false,
+      name: 'mediaGroup',
+      type: 'group',
+      fields: [
+        {
+          name: 'mediaRounded',
+          type: 'select',
+          defaultValue: 'none',
+          label: 'Rounded Border Direction',
+          options: [
+            {
+              label: 'None',
+              value: 'none',
+            },
+            {
+              label: 'Border Rounded Top',
+              value: 'top',
+            },
+            {
+              label: 'Border Rounded Left',
+              value: 'left',
+            },
+            {
+              label: 'Border Rounded Right',
+              value: 'right',
+            },
+            {
+              label: 'Border Rounded Bottom',
+              value: 'bottom',
+            },
+          ],
+        },
+        {
+          name: 'media',
+          type: 'upload',
+          relationTo: 'media',
+          required: false,
+        },
+      ],
     },
   ],
   labels: {

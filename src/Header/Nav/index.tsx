@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
+import Image from 'next/image'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const [subMenuOpen, setSubMenuOpen] = useState(false)
@@ -46,7 +47,9 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                 </p>
                 <img
                   src="images/menu-chevron.svg"
+                  alt="Menu Chevron"
                   className={`${subMenuOpen ? 'rotate-180' : ''} w-[.8125rem]`}
+                  aria-hidden
                 />
                 <nav
                   onMouseEnter={() => openSubMenu()}

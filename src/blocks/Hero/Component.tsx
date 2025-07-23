@@ -6,7 +6,9 @@ import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
-export const HeroBlock: React.FC<HeroBlockProps> = ({ links, media, richText }) => {
+export const HeroBlock: React.FC<HeroBlockProps> = ({ links, mediaGroup, richText }) => {
+  const { mediaRounded, media } = mediaGroup || {}
+
   return (
     <div className="relative flex items-center justify-between px-16 gap-20">
       <div className="mb-8 z-10 relative flex items-center justify-center">
@@ -33,7 +35,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ links, media, richText }) 
             className="w-[30rem] h-[37.5rem] border overflow-hidden lg:flex-shrink-0"
             imgClassName="w-full h-full object-cover"
             priority
-            rounded="top"
+            rounded={mediaRounded}
             resource={media}
           />
         </div>
