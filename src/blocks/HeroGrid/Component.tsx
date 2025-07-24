@@ -3,7 +3,6 @@ import React from 'react'
 import { HeroGridBlock as HeroGridBlockProps } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { CMSLink } from '@/components/Link'
-import Image from 'next/image'
 
 export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
   return (

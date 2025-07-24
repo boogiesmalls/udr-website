@@ -8,6 +8,7 @@ import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { Hero } from '@/blocks/Hero/config'
 import { HeroGrid } from '@/blocks/HeroGrid/config'
+import { Ticker } from '@/blocks/Ticker/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -71,7 +72,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Hero, Content, HeroGrid],
+              blocks: [Hero, Content, HeroGrid, Ticker],
               required: true,
               admin: {
                 initCollapsed: true,

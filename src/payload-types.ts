@@ -148,7 +148,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: number;
   title: string;
-  layout: (HeroBlock | ContentBlock | HeroGridBlock)[];
+  layout: (HeroBlock | ContentBlock | HeroGridBlock | TickerBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -483,6 +483,22 @@ export interface HeroGridBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tickerBlock".
+ */
+export interface TickerBlock {
+  title?: string | null;
+  tickerItems?:
+    | {
+        subtitle?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ticker';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -925,6 +941,7 @@ export interface PagesSelect<T extends boolean = true> {
         hero?: T | HeroBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         heroGrid?: T | HeroGridBlockSelect<T>;
+        ticker?: T | TickerBlockSelect<T>;
       };
   meta?:
     | T
@@ -1019,6 +1036,21 @@ export interface HeroGridBlockSelect<T extends boolean = true> {
               title?: T;
               subtitle?: T;
             };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tickerBlock_select".
+ */
+export interface TickerBlockSelect<T extends boolean = true> {
+  title?: T;
+  tickerItems?:
+    | T
+    | {
+        subtitle?: T;
         id?: T;
       };
   id?: T;

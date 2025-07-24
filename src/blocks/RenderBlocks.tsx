@@ -8,6 +8,7 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { HeroBlock } from '@/blocks/Hero/Component'
 import { HeroGridBlock } from '@/blocks/HeroGrid/Component'
+import { TickerBlock } from '@/blocks/Ticker/Component'
 
 const blockComponents = {
   // archive: ArchiveBlock,
@@ -15,6 +16,7 @@ const blockComponents = {
   // cta: CallToActionBlock,
   hero: HeroBlock,
   heroGrid: HeroGridBlock,
+  ticker: TickerBlock,
   // formBlock: FormBlock,
   // mediaBlock: MediaBlock,
 }
