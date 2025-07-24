@@ -19,6 +19,7 @@ export const Ticker: Block = {
           label: 'Ticker Subtitle',
         },
       ],
+      minRows: 6,
     },
   ],
 }

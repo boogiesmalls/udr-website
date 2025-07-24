@@ -9,7 +9,7 @@ export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
     <div>
       {Array.isArray(gridItems) && gridItems.length > 0 && (
         <div
-          className="grid grid-flow-col px-16 grid-cols-4 gap-x-8 gap-y-6"
+          className="grid grid-flow-col px-16 grid-cols-1 lg:grid-cols-4 lg:gap-x-8 gap-y-6"
           style={{ gridTemplateRows: `repeat(${gridItems.length - 1}, 1fr)` }}
         >
           {gridItems.map(({ link, media, cardTitles }, index) => {
@@ -18,10 +18,10 @@ export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
                 <CMSLink
                   key={index}
                   {...link}
-                  className={`flex border group ${
+                  className={`flex border group col-span-1 ${
                     index === 0
-                      ? 'flex-col col-start-1 col-end-3 row-span-full'
-                      : 'col-start-3 col-end-5'
+                      ? 'flex-col lg:col-start-1 lg:col-end-3 lg:row-span-full'
+                      : 'lg:col-start-3 lg:col-end-5'
                   } `}
                 >
                   <Media
