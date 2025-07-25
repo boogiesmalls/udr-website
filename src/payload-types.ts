@@ -148,7 +148,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: number;
   title: string;
-  layout: (HeroBlock | ContentBlock | HeroGridBlock | TickerBlock)[];
+  layout: (HeroBlock | ContentBlock | HeroGridBlock | TickerBlock | TeamListBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -499,6 +499,78 @@ export interface TickerBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'ticker';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teamListBlock".
+ */
+export interface TeamListBlock {
+  title?: string | null;
+  Items?:
+    | {
+        mediaGroup?: {
+          mediaRound?: ('none' | 'top' | 'left' | 'right' | 'bottom') | null;
+          media?: (number | null) | Media;
+        };
+        personGroup: {
+          name: string;
+          role?: string | null;
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+          };
+        };
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: 'default' | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'teamList';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -942,6 +1014,7 @@ export interface PagesSelect<T extends boolean = true> {
         content?: T | ContentBlockSelect<T>;
         heroGrid?: T | HeroGridBlockSelect<T>;
         ticker?: T | TickerBlockSelect<T>;
+        teamList?: T | TeamListBlockSelect<T>;
       };
   meta?:
     | T
@@ -1051,6 +1124,52 @@ export interface TickerBlockSelect<T extends boolean = true> {
     | T
     | {
         subtitle?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teamListBlock_select".
+ */
+export interface TeamListBlockSelect<T extends boolean = true> {
+  title?: T;
+  Items?:
+    | T
+    | {
+        mediaGroup?:
+          | T
+          | {
+              mediaRound?: T;
+              media?: T;
+            };
+        personGroup?:
+          | T
+          | {
+              name?: T;
+              role?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+            };
+        richText?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
         id?: T;
       };
   id?: T;

@@ -1,5 +1,5 @@
-import { link } from '@/fields/link'
 import type { Block } from 'payload'
+import { link } from '@/fields/link'
 
 export const HeroGrid: Block = {
   slug: 'heroGrid',

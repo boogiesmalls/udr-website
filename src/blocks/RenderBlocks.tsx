@@ -2,23 +2,18 @@ import React, { Fragment } from 'react'
 
 import type { Page } from '@/payload-types'
 
-import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
-import { FormBlock } from '@/blocks/Form/Component'
-import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { HeroBlock } from '@/blocks/Hero/Component'
 import { HeroGridBlock } from '@/blocks/HeroGrid/Component'
 import { TickerBlock } from '@/blocks/Ticker/Component'
+import { TeamListBlock } from '@/blocks/TeamList/Component'
 
 const blockComponents = {
-  // archive: ArchiveBlock,
   content: ContentBlock,
-  // cta: CallToActionBlock,
   hero: HeroBlock,
   heroGrid: HeroGridBlock,
+  teamList: TeamListBlock,
   ticker: TickerBlock,
-  // formBlock: FormBlock,
-  // mediaBlock: MediaBlock,
 }
 
 export const RenderBlocks: React.FC<{

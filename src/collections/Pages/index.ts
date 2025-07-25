@@ -2,13 +2,11 @@ import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Archive } from '../../blocks/ArchiveBlock/config'
 import { Content } from '../../blocks/Content/config'
-import { FormBlock } from '../../blocks/Form/config'
-import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { Hero } from '@/blocks/Hero/config'
 import { HeroGrid } from '@/blocks/HeroGrid/config'
 import { Ticker } from '@/blocks/Ticker/config'
+import { TeamList } from '@/blocks/TeamList/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -72,7 +70,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Hero, Content, HeroGrid, Ticker],
+              blocks: [Hero, Content, HeroGrid, Ticker, TeamList],
               required: true,
               admin: {
                 initCollapsed: true,
