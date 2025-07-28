@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 
 import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
-import Image from 'next/image'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const [subMenuOpen, setSubMenuOpen] = useState(false)
@@ -38,7 +37,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
               />
             )}
             {type === 'dropDownMenu' && (
-              <div
+              <button
                 onMouseEnter={() => openSubMenu()}
                 onMouseLeave={() => closeSubMenu()}
                 className="flex flex-row gap-[.625rem] cursor-pointer items-center h-full"
@@ -71,7 +70,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                     />
                   ))}
                 </nav>
-              </div>
+              </button>
             )}
           </div>
         )

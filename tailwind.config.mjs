@@ -100,7 +100,7 @@ const config = {
           css: [
             {
               h1: {
-                fontSize: '2.5rem',
+                fontSize: '2rem',
               },
               h2: {
                 fontSize: '1.25rem',
@@ -116,7 +116,13 @@ const config = {
                 fontSize: '3.5rem',
               },
               h2: {
+                fontSize: '2.5rem',
+              },
+              h3: {
                 fontSize: '2rem',
+              },
+              p: {
+                fontSize: '1.25rem',
               },
             },
           ],

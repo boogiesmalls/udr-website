@@ -8,7 +8,11 @@ export const SponsorsBlock: React.FC<SponsorsBlockProps> = ({ introText, sponsor
   return (
     <div className="px-8 lg:px-16">
       {introText && (
-        <RichText data={introText} enableGutter={false} className="mb-4 lg:mb-[4.75rem]" />
+        <RichText
+          data={introText}
+          enableGutter={false}
+          className="mb-8 lg:mb-[4.75rem] lg:prose-p:text-2xl"
+        />
       )}
 
       <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">

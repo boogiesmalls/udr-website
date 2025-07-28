@@ -30,13 +30,13 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
                     resource={media}
                   />
                   <div className="flex flex-col lg:flex-row lg:justify-between mb-8">
-                    <p className="text-[2rem]">{name}</p>
+                    <h3 className="text-[2rem]">{name}</h3>
                     <div className="flex gap-4 items-center">
                       <p className="px-4 border border-ash border-dashed rounded-[30px] w-fit">
                         {role}
                       </p>
                       {link.url && (
-                        <Link className="underline underline-offset-2" href={link.url}>
+                        <Link className="underline underline-offset-2 text-xl" href={link.url}>
                           {link.label}
                         </Link>
                       )}
