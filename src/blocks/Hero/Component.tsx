@@ -10,7 +10,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ links, mediaGroup, richTex
   const { mediaRounded, media } = mediaGroup || {}
 
   return (
-    <div className="relative flex flex-col lg:flex-row items-center lg:justify-between px-16 gap-20">
+    <div className="relative flex flex-col lg:flex-row items-center lg:justify-between px-8 lg:px-16 gap-20">
       <div className="mb-8 z-10 relative flex items-center justify-center">
         <div className="w-full lg:max-w-[62.5rem] md:text-center">
           {richText && (

@@ -20,8 +20,12 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
     }, 100)
   }
 
+  const toggleSubMenu = () => {
+    setSubMenuOpen((prev) => !prev)
+  }
+
   return (
-    <nav className="flex gap-8 items-center h-full">
+    <nav className="hidden  lg:flex gap-8 items-center h-full">
       {navItems.map((navItem, index) => {
         const type = navItem.type
         return (
@@ -54,6 +58,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                 <nav
                   onMouseEnter={() => openSubMenu()}
                   onMouseLeave={() => closeSubMenu()}
+                  onClick={() => toggleSubMenu()}
                   className={`${subMenuOpen ? 'flex' : 'hidden '} absolute w-full left-0 top-full md:px-16 md:py-6 bg-paper-200 items-center gap-[3rem] cursor-default`}
                 >
                   <p className="text-xl">{navItem.dropDownTitle}</p>

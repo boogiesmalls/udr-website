@@ -96,10 +96,22 @@ export const TeamList: Block = {
           }),
           label: 'Bio',
         },
+      ],
+    },
+    {
+      name: 'ctaGroup',
+      type: 'group',
+      fields: [
+        {
+          name: 'ctaTitle',
+          type: 'text',
+          label: 'Call to Action Title',
+        },
         link({
           appearances: ['default'],
         }),
       ],
+      label: 'Call to Action Group',
     },
   ],
 }

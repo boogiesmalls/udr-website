@@ -7,11 +7,13 @@ import { HeroBlock } from '@/blocks/Hero/Component'
 import { HeroGridBlock } from '@/blocks/HeroGrid/Component'
 import { TickerBlock } from '@/blocks/Ticker/Component'
 import { TeamListBlock } from '@/blocks/TeamList/Component'
+import { SponsorsBlock } from '@/blocks/Sponsors/Component'
 
 const blockComponents = {
   content: ContentBlock,
   hero: HeroBlock,
   heroGrid: HeroGridBlock,
+  sponsors: SponsorsBlock,
   teamList: TeamListBlock,
   ticker: TickerBlock,
 }
@@ -34,7 +36,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-[4.5rem]" key={index}>
+                <div className="my-10 lg:my-[4.5rem]" key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>

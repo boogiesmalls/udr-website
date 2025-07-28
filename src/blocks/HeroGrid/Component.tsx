@@ -6,10 +6,10 @@ import { CMSLink } from '@/components/Link'
 
 export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
   return (
-    <div>
+    <div className="px-8 lg:px-16">
       {Array.isArray(gridItems) && gridItems.length > 0 && (
         <div
-          className="grid grid-flow-col px-16 grid-cols-1 lg:grid-cols-4 lg:gap-x-8 gap-y-6"
+          className="flex flex-col lg:grid grid-flow-col grid-cols-1 lg:grid-cols-4 lg:gap-x-8 gap-y-6"
           style={{ gridTemplateRows: `repeat(${gridItems.length - 1}, 1fr)` }}
         >
           {gridItems.map(({ link, media, cardTitles }, index) => {

@@ -12,7 +12,7 @@ export async function Header() {
 
   return (
     <header className="relative z-20 border-b-[1px] border-b-[#BEBEBE]">
-      <div className="px-16 h-[5.125rem] flex justify-between items-center">
+      <div className="px-8 lg:px-16 h-[5.125rem] flex justify-between items-center">
         <Link href="/">
           <Logo loading="eager" priority="high" />
         </Link>
