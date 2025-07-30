@@ -92,6 +92,10 @@ const config = {
               h1: {
                 fontWeight: 'normal',
                 marginBottom: '0.25em',
+                fontSize: '1.5rem',
+              },
+              p: {
+                fontSize: '1rem',
               },
             },
           ],

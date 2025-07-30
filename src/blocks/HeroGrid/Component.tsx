@@ -6,7 +6,7 @@ import { CMSLink } from '@/components/Link'
 
 export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
   return (
-    <div className="px-8 lg:px-16">
+    <div className="px-4 lg:px-16">
       {Array.isArray(gridItems) && gridItems.length > 0 && (
         <div
           className="flex flex-col lg:grid grid-flow-col grid-cols-1 lg:grid-cols-4 lg:gap-x-8 gap-y-6"
@@ -34,11 +34,11 @@ export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
                     }`}
                   />
                   <div
-                    className={`flex justify-between py-5 w-full ${index === 0 ? 'flex-row px-12' : 'flex-col px-8'}`}
+                    className={`flex justify-between p-4 lg:py-5 w-full ${index === 0 ? 'flex-row lg:px-12' : 'flex-col lg:px-8'}`}
                   >
                     <div className="flex flex-col gap-[.75rem]">
-                      <h3 className="text-2xl w-fit">{cardTitles?.title}</h3>
-                      <p className="border-2 px-4 border-dashed border-ash rounded-[1.875rem] w-fit">
+                      <h3 className="text-base lg:text-2xl w-fit">{cardTitles?.title}</h3>
+                      <p className="text-xs lg:text-base border-2 px-3 py-2 lg:px-4 border-dashed border-ash rounded-[1.875rem] w-fit">
                         {cardTitles?.subtitle}
                       </p>
                     </div>
@@ -46,7 +46,7 @@ export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
                       src="images/grid-arrow.svg"
                       alt="Grid Arrow"
                       aria-hidden
-                      className={`w-[36px] ${index !== 0 && 'self-end'}`}
+                      className={`w-[36px] hidden lg:block ${index !== 0 && 'self-end'}`}
                     />
                   </div>
                 </CMSLink>
