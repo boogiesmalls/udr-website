@@ -6,7 +6,7 @@ import { Media } from '@/components/Media'
 
 export const SponsorsBlock: React.FC<SponsorsBlockProps> = ({ introText, sponsorItems }) => {
   return (
-    <div className="px-8 lg:px-16">
+    <div className="px-4 lg:px-16">
       {introText && (
         <RichText
           data={introText}
@@ -15,12 +15,15 @@ export const SponsorsBlock: React.FC<SponsorsBlockProps> = ({ introText, sponsor
         />
       )}
 
-      <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
+      <div className="flex flex-row flex-wrap gap-8 lg:flex-row lg:justify-between">
         {sponsorItems?.map(({ sponsorGroup }, index) => {
           const { sponsorMedia, link } = sponsorGroup
           return (
             <a href={link && link.url ? link.url : ''} key={index} className="w-fit">
-              <Media resource={sponsorMedia} imgClassName="w-full h-[5rem] object-contain" />
+              <Media
+                resource={sponsorMedia}
+                imgClassName="w-[9.6875rem] lg:w-auto h-[5rem] object-contain"
+              />
             </a>
           )
         })}

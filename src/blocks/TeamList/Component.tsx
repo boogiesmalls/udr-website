@@ -8,8 +8,8 @@ import { CMSLink } from '@/components/Link'
 
 export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaGroup }) => {
   return (
-    <div className="px-8 lg:px-16">
-      <h2 className="text-3xl mb-12">{title}</h2>
+    <div>
+      <h2 className="text-3xl mb-12 px-4 lg:px-16">{title}</h2>
       <div className="flex flex-col lg:grid grid-cols-1 lg:grid-cols-2 gap-y-8 lg:gap-y-0 lg:gap-x-[7.0625rem]">
         {Items &&
           Items.map(({ mediaGroup, personGroup, richText }, index) => {
@@ -19,7 +19,7 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
             return (
               <div className="flex flex-col lg:justify-between" key={index}>
                 <div
-                  className={`lg:col-span-1 ${index === 1 && ctaGroup ? 'lg:-my-[10rem]' : ''}`}
+                  className={`lg:col-span-1 px-4 lg:px-16 ${index === 1 && ctaGroup ? 'lg:-my-[10rem]' : ''}`}
                   key={index}
                 >
                   <Media
@@ -51,7 +51,7 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
                   )}
                 </div>
                 {ctaGroup && index === 1 && (
-                  <div className="flex flex-row p-8 items-center justify-between border border-feather bg-paper-200 col-start-2">
+                  <div className="flex flex-row p-4 lg:p-8 items-center justify-between border-t border-b lg:border border-feather bg-paper-200 col-start-2">
                     <p className="text-2xl lg:text-[2rem]">{ctaGroup.ctaTitle}</p>
                     <CMSLink {...ctaGroup.link} />
                   </div>

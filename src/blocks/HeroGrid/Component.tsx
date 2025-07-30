@@ -10,7 +10,7 @@ export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
       {Array.isArray(gridItems) && gridItems.length > 0 && (
         <div
           className="flex flex-col lg:grid grid-flow-col grid-cols-1 lg:grid-cols-4 lg:gap-x-8 gap-y-6"
-          style={{ gridTemplateRows: `repeat(${gridItems.length - 1}, 1fr)` }}
+          style={{ gridTemplateRows: `repeat(${gridItems.length - 1}, 316px)` }}
         >
           {gridItems.map(({ link, media, cardTitles }, index) => {
             return (
@@ -26,15 +26,15 @@ export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
                 >
                   <Media
                     resource={media}
-                    className={`overflow-hidden ${index === 0 ? 'h-[83%]' : 'w-[42%]'}`}
+                    className={`overflow-hidden ${index === 0 ? 'lg:h-[83%] col-start-1 col-end-3' : 'h-[132px] lg:w-[267px] lg:h-full shrink-0 col-start-3 col-end-5'}`}
                     imgClassName={`group-hover:scale-110 transition-[all] duration-scale ease-in-out object-cover h-full ${
                       index === 0
-                        ? 'flex-col col-start-1 col-end-3 row-span-full '
-                        : 'col-start-3 col-end-5 w-fit'
+                        ? 'flex-col row-span-full'
+                        : 'w-fit lg:w-full aspect-square lg:aspect-auto'
                     }`}
                   />
                   <div
-                    className={`flex justify-between p-4 lg:py-5 w-full ${index === 0 ? 'flex-row lg:px-12' : 'flex-col lg:px-8'}`}
+                    className={`flex justify-between p-4 w-fit lg:w-full ${index === 0 ? 'flex-row lg:p-5' : 'flex-col lg:p-8'}`}
                   >
                     <div className="flex flex-col gap-[.75rem]">
                       <h3 className="text-base lg:text-2xl w-fit">{cardTitles?.title}</h3>

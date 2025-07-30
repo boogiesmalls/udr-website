@@ -21,7 +21,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   const udrShapes = ['/images/u-shape.svg', '/images/d-shape.svg', '/images/r-shape.svg']
 
   return (
-    <div className="px-8 lg:px-16 my-16">
+    <div className="px-4 lg:px-16 my-16">
       <h2 className="mb-[4.5rem] text-[2.5rem]">{contentTitle}</h2>
       <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-[60px]">
         {columns &&
@@ -37,7 +37,11 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                 key={index}
               >
                 {richText && (
-                  <RichText data={richText} enableGutter={false} className="relative z-10 line" />
+                  <RichText
+                    data={richText}
+                    enableGutter={false}
+                    className="prose-h3:mb-4 relative z-10 line"
+                  />
                 )}
 
                 <Image
@@ -46,7 +50,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                   width={100}
                   alt="udr-shape"
                   aria-hidden
-                  className="absolute -top-[15px] -left-[30px] lg:-top-[26px] lg:-left-[14px] h-[3.75rem] lg:h-[90px]"
+                  className="absolute -top-1.5 -left-1 lg:-top-[26px] lg:-left-[14px] w-[56px] lg:h-[90px]"
                 />
               </div>
             )

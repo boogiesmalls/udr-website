@@ -93,9 +93,11 @@ const config = {
                 fontWeight: 'normal',
                 marginBottom: '0.25em',
                 fontSize: '1.5rem',
+                lineHeight: '120%',
               },
               p: {
                 fontSize: '1rem',
+                lineHeight: '140%',
               },
             },
           ],
@@ -124,6 +126,7 @@ const config = {
               },
               h3: {
                 fontSize: '2rem',
+                lineHeight: '120%',
               },
               p: {
                 fontSize: '1.25rem',
