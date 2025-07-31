@@ -39,11 +39,13 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         className="h-[.875rem] w-6 lg:hidden cursor-pointer"
         onClick={toggleMenu}
       />
-      <div className={`lg:flex gap-8 items-center h-full ${menuOpen ? '' : 'hidden'}`}>
+      <div
+        className={`bg-paper-100 fixed top-[83px] inset-0 lg:static lg:bg-none flex flex-col lg:flex-row gap-8 justify-center items-center h-full ${menuOpen ? '' : 'hidden lg:flex'}`}
+      >
         {navItems.map((navItem, index) => {
           const type = navItem.type
           return (
-            <div className="h-full flex items-center" key={index}>
+            <div className="lg:h-full flex items-center" key={index}>
               {type === 'singleLink' && (
                 <CMSLink
                   {...navItem.link}

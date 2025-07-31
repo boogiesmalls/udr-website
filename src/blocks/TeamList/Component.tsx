@@ -19,7 +19,7 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
             return (
               <div className="flex flex-col lg:justify-between" key={index}>
                 <div
-                  className={`lg:col-span-1 px-4 lg:px-16 ${index === 1 && ctaGroup ? 'lg:-my-[10rem]' : ''}`}
+                  className={`lg:col-span-1 px-4 ${index === 0 ? 'lg:px-0 lg:pl-16' : 'lg:px-0 lg:pr-16'} ${index === 1 && ctaGroup ? 'lg:-my-[10rem]' : ''}`}
                   key={index}
                 >
                   <Media
@@ -51,7 +51,7 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
                   )}
                 </div>
                 {ctaGroup && index === 1 && (
-                  <div className="flex flex-row p-4 lg:p-8 items-center justify-between border-t border-b lg:border border-feather bg-paper-200 col-start-2">
+                  <div className="flex flex-row p-4 lg:p-8 lg:px-16 items-center justify-between border-t border-b lg:border border-feather bg-paper-200 col-start-2">
                     <p className="text-2xl lg:text-[2rem]">{ctaGroup.ctaTitle}</p>
                     <CMSLink {...ctaGroup.link} />
                   </div>

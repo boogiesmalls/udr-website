@@ -22,7 +22,7 @@ export const Logo = (props: Props) => {
       loading={loading}
       fetchPriority={priority}
       decoding="async"
-      className={clsx('max-w-[11.1875rem] w-full h-[34px]', className)}
+      className={clsx('max-w-[11.1875rem] w-full h-[48px]', className)}
       src="/images/udr-logo.svg"
     />
   )
