@@ -26,6 +26,11 @@ export default buildConfig({
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
       beforeLogin: ['@/components/BeforeLogin'],
+      // The `Logo` component renders the logo in the admin panel.
+      graphics: {
+        Logo: '/components/Logo/payload/AdminLogo',
+        Icon: '/components/Logo/payload/AdminIcon',
+      },
     },
     importMap: {
       baseDir: path.resolve(dirname),

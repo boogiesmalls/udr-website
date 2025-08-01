@@ -407,6 +407,7 @@ export interface User {
  * via the `definition` "HeroGridBlock".
  */
 export interface HeroGridBlock {
+  gridTitle: string;
   gridItems?:
     | {
         link?: {
@@ -844,6 +845,7 @@ export interface HeroBlockSelect<T extends boolean = true> {
  * via the `definition` "HeroGridBlock_select".
  */
 export interface HeroGridBlockSelect<T extends boolean = true> {
+  gridTitle?: T;
   gridItems?:
     | T
     | {
@@ -1332,27 +1334,6 @@ export interface TaskSchedulePublish {
     user?: (number | null) | User;
   };
   output?: unknown;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CodeBlock".
- */
-export interface CodeBlock {
-  language?: ('typescript' | 'javascript' | 'css') | null;
-  code: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'code';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
- */
-export interface MediaBlock {
-  media: number | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

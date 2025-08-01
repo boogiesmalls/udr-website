@@ -6,6 +6,12 @@ export const HeroGrid: Block = {
   interfaceName: 'HeroGridBlock',
   fields: [
     {
+      name: 'gridTitle',
+      type: 'text',
+      label: 'Grid Title',
+      required: true,
+    },
+    {
       name: 'gridItems',
       type: 'array',
       fields: [

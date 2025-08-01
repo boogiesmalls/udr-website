@@ -4,9 +4,12 @@ import { HeroGridBlock as HeroGridBlockProps } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { CMSLink } from '@/components/Link'
 
-export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridItems }) => {
+export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridTitle, gridItems }) => {
   return (
     <div className="px-4 lg:px-16">
+      {gridTitle && (
+        <h2 className="text-xl lg:text-[2.5rem] font-bold mb-4 lg:mb-8">{gridTitle}</h2>
+      )}
       {Array.isArray(gridItems) && gridItems.length > 0 && (
         <div
           className="flex flex-col lg:grid grid-flow-col grid-cols-1 lg:grid-cols-4 lg:gap-x-8 gap-y-6"
