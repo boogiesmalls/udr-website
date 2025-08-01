@@ -11,7 +11,7 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ links, mediaGroup, richTex
 
   return (
     <div className="relative flex flex-col lg:flex-row items-center lg:justify-between px-4 lg:px-16 gap-8 lg:gap-20">
-      <div className="order-2 lg:order-1 mb-8 z-10 relative flex items-center justify-center">
+      <div className="order-2 lg:order-1 mb-8 z-10 relative flex items-center justify-start w-full">
         <div className="w-full lg:max-w-[62.5rem] md:text-center">
           {richText && (
             <RichText className="mb-6 text-left text-xl" data={richText} enableGutter={false} />

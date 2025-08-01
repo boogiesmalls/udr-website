@@ -54,7 +54,7 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
                   )}
                 </div>
                 {ctaGroup && index === 1 && (
-                  <div className="flex flex-row p-4 lg:p-8 lg:px-16 items-center justify-between border-t border-b lg:border border-feather bg-paper-200 col-start-2">
+                  <div className="flex flex-row mt-12 p-4 lg:p-8 lg:px-16 items-center justify-between border-t border-b lg:border border-feather bg-paper-200 col-start-2">
                     <p className="text-2xl lg:text-[2rem]">{ctaGroup.ctaTitle}</p>
                     <CMSLink {...ctaGroup.link} />
                   </div>

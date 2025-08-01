@@ -1,32 +1,41 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import Image from 'next/image'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
-  const [subMenuOpen, setSubMenuOpen] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [submenuOpen, setSubMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const navItems = data?.navItems || []
+  const pathname = usePathname()
 
-  const openSubMenu = () => {
-    setSubMenuOpen(true)
-  }
+  useEffect(() => {
+    setMobileMenuOpen(false)
+    setSubMenuOpen(false)
+  }, [pathname])
 
-  const closeSubMenu = () => {
-    window.setTimeout(() => {
-      setSubMenuOpen(false)
-    }, 100)
-  }
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [mobileMenuOpen])
 
   const toggleSubMenu = () => {
     setSubMenuOpen((prev) => !prev)
   }
 
-  const toggleMenu = () => {
-    setMenuOpen((prev) => !prev)
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev)
     window.scrollTo({
       top: 0,
       behavior: 'instant',
@@ -36,15 +45,15 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   return (
     <nav className="flex items-center h-full">
       <Image
-        src="/images/hamburger-icon.svg"
+        src={mobileMenuOpen ? '/images/close-icon.svg' : '/images/hamburger-icon.svg'}
         width={24}
         height={14}
         alt="Mobile Nav Button"
-        className="h-[.875rem] w-6 lg:hidden cursor-pointer"
-        onClick={toggleMenu}
+        className={`w-6 lg:hidden cursor-pointer`}
+        onClick={toggleMobileMenu}
       />
       <div
-        className={`bg-paper-100 fixed top-[83px] inset-0 lg:static lg:bg-none flex flex-col lg:flex-row gap-8 justify-center items-center h-[calc(100%-83px)] lg:h-full ${menuOpen ? '' : 'hidden lg:flex'}`}
+        className={`bg-paper-100 fixed top-[83px] inset-0 lg:static lg:bg-none flex flex-col lg:flex-row gap-8 justify-center items-center h-[calc(100%-83px)] lg:h-full ${mobileMenuOpen ? '' : 'hidden lg:flex'}`}
       >
         {navItems.map((navItem, index) => {
           const type = navItem.type
@@ -54,40 +63,36 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                 <CMSLink
                   {...navItem.link}
                   appearance="link"
-                  className="decoration-[.0625rem] underline-offset-8 text-base h-full items-center"
+                  className="decoration-[.0625rem] underline-offset-8 text-[2rem] lg:text-base h-full items-center"
                 />
               )}
               {type === 'dropDownMenu' && (
                 <button
-                  onMouseEnter={() => openSubMenu()}
-                  onMouseLeave={() => closeSubMenu()}
-                  className="flex flex-row gap-[.625rem] cursor-pointer items-center h-full"
+                  onClick={toggleSubMenu}
+                  className="flex flex-col lg:flex-row gap-6 lg:gap-[.625rem] cursor-pointer items-center h-full"
                   role="button"
                 >
                   <p
-                    className={`${subMenuOpen ? 'underline' : ''} decoration-[.0625rem] underline-offset-8`}
+                    className={`text-[2rem] lg:text-base ${submenuOpen ? 'lg:underline' : ''} block lg:hover:underline decoration-[.0625rem] underline-offset-8`}
                   >
                     {navItem.dropDownTitle}
                   </p>
                   <img
                     src="images/menu-chevron.svg"
                     alt="Menu Chevron"
-                    className={`${subMenuOpen ? 'rotate-180' : ''} w-[.8125rem]`}
+                    className={`${submenuOpen ? 'rotate-180' : ''} w-[.8125rem] hidden lg:block`}
                     aria-hidden
                   />
                   <nav
-                    onMouseEnter={() => openSubMenu()}
-                    onMouseLeave={() => closeSubMenu()}
-                    onClick={() => toggleSubMenu()}
-                    className={`${subMenuOpen ? 'flex' : 'hidden '} absolute w-full left-0 top-full md:px-16 md:py-6 bg-paper-200 items-center gap-[3rem] cursor-default`}
+                    className={`${submenuOpen ? 'lg:flex lg:flex-row' : 'lg:hidden'} lg:absolute w-full left-0 top-full md:px-16 md:py-6 lg:bg-paper-200 items-center gap-4 lg:gap-[3rem] cursor-default`}
                   >
-                    <p className="text-xl">{navItem.dropDownTitle}</p>
+                    <p className="text-xl hidden lg:block">{navItem.dropDownTitle}</p>
                     {navItem.dropDownNavItems?.map((subNavItem, index) => (
                       <CMSLink
                         key={index}
                         {...subNavItem.link}
                         appearance="link"
-                        className="decoration-[.0625rem] underline-offset-8 text-base"
+                        className="decoration-[.0625rem] underline-offset-8 text-xl lg:text-base"
                       />
                     ))}
                   </nav>

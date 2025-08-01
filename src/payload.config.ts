@@ -1,5 +1,6 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { resendAdapter } from '@payloadcms/email-resend'
 
 import sharp from 'sharp' // sharp-import
 import path from 'path'
@@ -60,6 +61,11 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+  }),
+  email: resendAdapter({
+    defaultFromAddress: 'admin@urbandataresponse.org',
+    defaultFromName: 'UDR Admin',
+    apiKey: process.env.RESEND_API_KEY || '',
   }),
   collections: [Pages, Projects, Media, Users],
   cors: [getServerSideURL()].filter(Boolean),
