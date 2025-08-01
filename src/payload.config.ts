@@ -63,7 +63,7 @@ export default buildConfig({
     },
   }),
   email: resendAdapter({
-    defaultFromAddress: 'admin@urbandataresponse.org',
+    defaultFromAddress: 'arpan@urbandataresponse.org',
     defaultFromName: 'UDR Admin',
     apiKey: process.env.RESEND_API_KEY || '',
   }),

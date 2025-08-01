@@ -31,6 +31,20 @@ const nextConfig = {
   },
   reactStrictMode: true,
   redirects,
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        has: [
+          {
+            type: 'host',
+            value: '(?<slug>.*)\\.urbandataresponse\\.org',
+          },
+        ],
+        destination: '/projects/:slug',
+      },
+    ]
+  },
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })

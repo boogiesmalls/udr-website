@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 
-import { RelatedPosts } from '@/blocks/RelatedPosts/Component'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
@@ -16,7 +15,7 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
-  const posts = await payload.find({
+  const projects = await payload.find({
     collection: 'projects',
     draft: false,
     limit: 1000,
@@ -27,7 +26,7 @@ export async function generateStaticParams() {
     },
   })
 
-  const params = posts.docs.map(({ slug }) => {
+  const params = projects.docs.map(({ slug }) => {
     return { slug }
   })
 
@@ -44,7 +43,7 @@ export default async function Project({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
   const { slug = '' } = await paramsPromise
   const url = '/projects/' + slug
-  const project = await queryPostBySlug({ slug })
+  const project = await queryProjectBySlug({ slug })
 
   if (!project) return <PayloadRedirects url={url} />
 
@@ -68,12 +67,12 @@ export default async function Project({ params: paramsPromise }: Args) {
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = '' } = await paramsPromise
-  const post = await queryPostBySlug({ slug })
+  const project = await queryProjectBySlug({ slug })
 
-  return generateMeta({ doc: post })
+  return generateMeta({ doc: project })
 }
 
-const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
+const queryProjectBySlug = cache(async ({ slug }: { slug: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
