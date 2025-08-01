@@ -127,6 +127,7 @@ const config = {
               h3: {
                 fontSize: '2rem',
                 lineHeight: '120%',
+                fontWeight: 400,
               },
               p: {
                 fontSize: '1.25rem',

@@ -8,14 +8,14 @@ import { revalidateRedirects } from '@/hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 
-import { Page, Post } from '@/payload-types'
+import { Page, Project } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
-const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
+const generateTitle: GenerateTitle<Project | Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Urban Data Response` : 'Urban Data Response'
 }
 
-const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
+const generateURL: GenerateURL<Project | Page> = ({ doc }) => {
   const url = getServerSideURL()
 
   return doc?.slug ? `${url}/${doc.slug}` : url
@@ -23,7 +23,7 @@ const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
 
 export const plugins: Plugin[] = [
   redirectsPlugin({
-    collections: ['pages', 'posts'],
+    collections: ['pages', 'projects'],
     overrides: {
       // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
       fields: ({ defaultFields }) => {
@@ -44,10 +44,10 @@ export const plugins: Plugin[] = [
       },
     },
   }),
-  nestedDocsPlugin({
-    collections: ['categories'],
-    generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
-  }),
+  // nestedDocsPlugin({
+  //   collections: ['categories'],
+  //   generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
+  // }),
   seoPlugin({
     generateTitle,
     generateURL,
@@ -56,27 +56,27 @@ export const plugins: Plugin[] = [
     fields: {
       payment: false,
     },
-    formOverrides: {
-      fields: ({ defaultFields }) => {
-        return defaultFields.map((field) => {
-          if ('name' in field && field.name === 'confirmationMessage') {
-            return {
-              ...field,
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    FixedToolbarFeature(),
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                  ]
-                },
-              }),
-            }
-          }
-          return field
-        })
-      },
-    },
+    // formOverrides: {
+    //   fields: ({ defaultFields }) => {
+    //     return defaultFields.map((field) => {
+    //       if ('name' in field && field.name === 'confirmationMessage') {
+    //         return {
+    //           ...field,
+    //           editor: lexicalEditor({
+    //             features: ({ rootFeatures }) => {
+    //               return [
+    //                 ...rootFeatures,
+    //                 FixedToolbarFeature(),
+    //                 HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+    //               ]
+    //             },
+    //           }),
+    //         }
+    //       }
+    //       return field
+    //     })
+    //   },
+    // },
   }),
   payloadCloudPlugin(),
 ]

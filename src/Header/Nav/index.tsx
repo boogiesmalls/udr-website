@@ -27,6 +27,10 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev)
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    })
   }
 
   return (
@@ -40,7 +44,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         onClick={toggleMenu}
       />
       <div
-        className={`bg-paper-100 fixed top-[83px] inset-0 lg:static lg:bg-none flex flex-col lg:flex-row gap-8 justify-center items-center h-full ${menuOpen ? '' : 'hidden lg:flex'}`}
+        className={`bg-paper-100 fixed top-[83px] inset-0 lg:static lg:bg-none flex flex-col lg:flex-row gap-8 justify-center items-center h-[calc(100%-83px)] lg:h-full ${menuOpen ? '' : 'hidden lg:flex'}`}
       >
         {navItems.map((navItem, index) => {
           const type = navItem.type

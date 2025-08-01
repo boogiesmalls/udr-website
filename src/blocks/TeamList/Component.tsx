@@ -17,9 +17,12 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
             const { name, role, link } = personGroup || {}
             console.log({ index, ctaGroup })
             return (
-              <div className="flex flex-col lg:justify-between" key={index}>
+              <div
+                className={`flex flex-col lg:justify-between ${index === 0 ? 'lg:px-0 lg:pl-16' : 'lg:px-0 lg:pr-16'}`}
+                key={index}
+              >
                 <div
-                  className={`lg:col-span-1 px-4 ${index === 0 ? 'lg:px-0 lg:pl-16' : 'lg:px-0 lg:pr-16'} ${index === 1 && ctaGroup ? 'lg:-my-[10rem]' : ''}`}
+                  className={`lg:col-span-1 px-4 lg:px-0 ${index === 1 && ctaGroup ? 'lg:-my-[10rem]' : ''}`}
                   key={index}
                 >
                   <Media
