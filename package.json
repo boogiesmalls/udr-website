@@ -24,7 +24,8 @@
   "dependencies": {
     "@payloadcms/admin-bar": "3.48.0",
     "@payloadcms/db-postgres": "3.48.0",
-    "@payloadcms/email-resend": "^3.49.1",
+    "@payloadcms/db-vercel-postgres": "3.48.0",
+    "@payloadcms/email-resend": "3.48.0",
     "@payloadcms/live-preview-react": "3.48.0",
     "@payloadcms/next": "3.48.0",
     "@payloadcms/payload-cloud": "3.48.0",
@@ -34,6 +35,7 @@
     "@payloadcms/plugin-search": "3.48.0",
     "@payloadcms/plugin-seo": "3.48.0",
     "@payloadcms/richtext-lexical": "3.48.0",
+    "@payloadcms/storage-vercel-blob": "3.48.0",
     "@payloadcms/ui": "3.48.0",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-label": "^2.0.2",
