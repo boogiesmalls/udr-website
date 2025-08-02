@@ -84,7 +84,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                     aria-hidden
                   />
                   <nav
-                    className={`${submenuOpen ? 'lg:flex lg:flex-row' : 'lg:hidden'} lg:absolute w-full left-0 top-full md:px-16 md:py-6 lg:bg-paper-200 items-center gap-4 lg:gap-[3rem] cursor-default`}
+                    className={`flex flex-col ${submenuOpen ? 'lg:flex-row' : 'lg:hidden'} lg:absolute w-full left-0 top-full md:px-16 md:py-6 lg:bg-paper-200 items-center gap-4 lg:gap-[3rem] cursor-default`}
                   >
                     <p className="text-xl hidden lg:block">{navItem.dropDownTitle}</p>
                     {navItem.dropDownNavItems?.map((subNavItem, index) => (
