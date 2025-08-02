@@ -15,7 +15,6 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
           Items.map(({ mediaGroup, personGroup, richText }, index) => {
             const { mediaRound, media } = mediaGroup || {}
             const { name, role, link } = personGroup || {}
-            console.log({ index, ctaGroup })
             return (
               <div
                 className={`flex flex-col lg:justify-between ${index === 0 ? 'lg:px-0 lg:pl-16' : 'lg:px-0 lg:pr-16'}`}
@@ -55,7 +54,7 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
                 </div>
                 {ctaGroup && index === 1 && (
                   <div className="flex flex-row mt-12 p-4 lg:p-8 lg:px-16 items-center justify-between border-t border-b lg:border border-feather bg-paper-200 col-start-2">
-                    <p className="text-2xl lg:text-[2rem]">{ctaGroup.ctaTitle}</p>
+                    <p className="text-xl lg:text-2xl lg:text-[2rem]">{ctaGroup.ctaTitle}</p>
                     <CMSLink {...ctaGroup.link} />
                   </div>
                 )}

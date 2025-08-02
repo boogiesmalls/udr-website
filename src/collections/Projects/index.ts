@@ -12,7 +12,6 @@ import {
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { populateAuthors } from './hooks/populateAuthors'
 import { revalidateDelete, revalidateProject } from './hooks/revalidateProject'
 
 import {
@@ -208,7 +207,6 @@ export const Projects: CollectionConfig<'projects'> = {
   ],
   hooks: {
     afterChange: [revalidateProject],
-    afterRead: [populateAuthors],
     afterDelete: [revalidateDelete],
   },
   versions: {
