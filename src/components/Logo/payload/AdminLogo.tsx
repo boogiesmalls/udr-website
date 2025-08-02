@@ -9,16 +9,12 @@ const AdminLogo = () => {
       <Image
         src={LogoDark}
         alt="Urban Data Response Logo"
-        width={193}
-        height={34}
-        className="h-[32px] object-contain dark:hidden"
+        className="h-36 object-contain dark:hidden"
       />
       <Image
         src={LogoLight}
         alt="Urban Data Response Logo"
-        width={193}
-        height={34}
-        className="h-[32px] object-contain hidden dark:block"
+        className="h-36 object-contain hidden dark:block"
       />
     </div>
   )

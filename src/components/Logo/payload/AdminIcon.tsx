@@ -12,7 +12,7 @@ const AdminIcon = () => {
       loading="lazy"
       fetchPriority="low"
       decoding="async"
-      className="h-10"
+      className="h-5 object-contain"
     />
   )
 }

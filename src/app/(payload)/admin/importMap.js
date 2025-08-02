@@ -20,7 +20,6 @@ import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { RowLabel as RowLabel_ec255a65fa6fa8d1faeb09cf35284224 } from '@/Header/RowLabel'
 import { default as default_15b5442f3f8416fa3ecd3c611eed03d3 } from '../../../components/Logo/payload/AdminIcon'
 import { default as default_4635f03dc2d8d089e72cfd9f8f2877de } from '../../../components/Logo/payload/AdminLogo'
-import { default as default_8a7ab0eb7ab5c511aba12e68480bfe5e } from '@/components/BeforeLogin'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -44,6 +43,5 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#BlocksFeatureClient": BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@/Header/RowLabel#RowLabel": RowLabel_ec255a65fa6fa8d1faeb09cf35284224,
   "/components/Logo/payload/AdminIcon#default": default_15b5442f3f8416fa3ecd3c611eed03d3,
-  "/components/Logo/payload/AdminLogo#default": default_4635f03dc2d8d089e72cfd9f8f2877de,
-  "@/components/BeforeLogin#default": default_8a7ab0eb7ab5c511aba12e68480bfe5e
+  "/components/Logo/payload/AdminLogo#default": default_4635f03dc2d8d089e72cfd9f8f2877de
 }
