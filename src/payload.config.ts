@@ -24,7 +24,6 @@ export default buildConfig({
   admin: {
     components: {
       // beforeLogin: ['@/components/BeforeLogin'],
-      // The `Logo` component renders the logo in the admin panel.
       graphics: {
         Logo: '/components/Logo/payload/AdminLogo',
         Icon: '/components/Logo/payload/AdminIcon',
@@ -35,7 +34,10 @@ export default buildConfig({
     },
     user: Users.slug,
     livePreview: {
-      url: 'http://localhost:3000',
+      url:
+        process.env.NEXT_PUBLIC_SERVER_URL ||
+        process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+        'http://localhost:3000',
       breakpoints: [
         {
           label: 'Mobile',

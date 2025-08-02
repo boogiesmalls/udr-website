@@ -20,6 +20,7 @@ import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { RowLabel as RowLabel_ec255a65fa6fa8d1faeb09cf35284224 } from '@/Header/RowLabel'
 import { default as default_15b5442f3f8416fa3ecd3c611eed03d3 } from '../../../components/Logo/payload/AdminIcon'
 import { default as default_4635f03dc2d8d089e72cfd9f8f2877de } from '../../../components/Logo/payload/AdminLogo'
+import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -43,5 +44,6 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#BlocksFeatureClient": BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@/Header/RowLabel#RowLabel": RowLabel_ec255a65fa6fa8d1faeb09cf35284224,
   "/components/Logo/payload/AdminIcon#default": default_15b5442f3f8416fa3ecd3c611eed03d3,
-  "/components/Logo/payload/AdminLogo#default": default_4635f03dc2d8d089e72cfd9f8f2877de
+  "/components/Logo/payload/AdminLogo#default": default_4635f03dc2d8d089e72cfd9f8f2877de,
+  "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24
 }

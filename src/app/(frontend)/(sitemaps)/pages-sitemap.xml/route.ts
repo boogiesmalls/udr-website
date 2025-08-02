@@ -9,7 +9,7 @@ const getPagesSitemap = unstable_cache(
     const SITE_URL =
       process.env.NEXT_PUBLIC_SERVER_URL ||
       process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-      'https://urbandataresponse.org'
+      'http://localhost:3000'
 
     const results = await payload.find({
       collection: 'pages',
