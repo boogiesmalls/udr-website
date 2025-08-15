@@ -1,4 +1,4 @@
-import type { Field, GroupField } from 'payload'
+import type { Field, GroupField, RadioField } from 'payload'
 
 import deepMerge from '@/utilities/deepMerge'
 
@@ -19,9 +19,15 @@ type LinkType = (options?: {
   appearances?: LinkAppearances[] | false
   disableLabel?: boolean
   overrides?: Partial<GroupField>
+  typeFieldOverrides?: Partial<RadioField>
 }) => Field
 
-export const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
+export const link: LinkType = ({
+  appearances,
+  disableLabel = false,
+  overrides = {},
+  typeFieldOverrides = {},
+} = {}) => {
   const linkResult: GroupField = {
     name: 'link',
     type: 'group',
@@ -50,6 +56,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
                 value: 'custom',
               },
             ],
+            ...typeFieldOverrides,
           },
           {
             name: 'newTab',

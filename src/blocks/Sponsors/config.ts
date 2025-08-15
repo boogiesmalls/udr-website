@@ -44,11 +44,13 @@ export const Sponsors: Block = {
             link({
               appearances: false,
               disableLabel: true,
+              typeFieldOverrides: {
+                dbName: 'spons_link_type',
+              },
             }),
           ],
         },
       ],
-      dbName: 'spons_items',
     },
   ],
 }
