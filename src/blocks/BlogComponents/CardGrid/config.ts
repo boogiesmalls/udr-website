@@ -1,18 +1,19 @@
-import type { Block } from 'payload'
+import { Block } from 'payload'
+
 import { link } from '@/fields/link'
 
-export const HeroGrid: Block = {
-  slug: 'heroGrid',
-  interfaceName: 'HeroGridBlock',
+export const CardGrid: Block = {
+  slug: 'cardGrid',
+  interfaceName: 'CardGridBlock',
   fields: [
     {
       name: 'gridTitle',
       type: 'text',
       label: 'Grid Title',
-      required: true,
+      required: false,
     },
     {
-      name: 'gridItems',
+      name: 'cardItems',
       type: 'array',
       fields: [
         link({
@@ -20,13 +21,7 @@ export const HeroGrid: Block = {
           disableLabel: true,
         }),
         {
-          name: 'media',
-          type: 'upload',
-          relationTo: 'media',
-          required: true,
-        },
-        {
-          name: 'cardTitles',
+          name: 'gridTitles',
           type: 'group',
           label: 'Card Titles',
           fields: [
@@ -38,12 +33,12 @@ export const HeroGrid: Block = {
             {
               name: 'subtitles',
               type: 'array',
-              label: 'Sub Titles',
+              label: 'Subtitles',
               fields: [
                 {
                   name: 'subtitle',
                   type: 'text',
-                  label: 'Sub Title',
+                  label: 'Subtitle',
                 },
               ],
               maxRows: 3,
@@ -51,10 +46,7 @@ export const HeroGrid: Block = {
           ],
         },
       ],
-      maxRows: 3,
-      admin: {
-        initCollapsed: true,
-      },
     },
   ],
+  dbName: 'cGrid',
 }

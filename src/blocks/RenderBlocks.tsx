@@ -2,20 +2,34 @@ import React, { Fragment } from 'react'
 
 import type { Page } from '@/payload-types'
 
-import { ContentBlock } from '@/blocks/Content/Component'
+import { ColumnBlock } from '@/blocks/Columns/Component'
 import { HeroBlock } from '@/blocks/Hero/Component'
 import { HeroGridBlock } from '@/blocks/HeroGrid/Component'
 import { TickerBlock } from '@/blocks/Ticker/Component'
 import { TeamListBlock } from '@/blocks/TeamList/Component'
 import { SponsorsBlock } from '@/blocks/Sponsors/Component'
+import { ContentTextBlock } from '@/blocks/BlogComponents/ContentText/Component'
+import { ContentTextMediaBlock } from '@/blocks/BlogComponents/ContentTextMedia/Component'
+import { ContentHeaderBlock } from '@/blocks/BlogComponents/ContentHeader/Component'
+import { ContentHeaderLargeMediaBlock } from '@/blocks/BlogComponents/ContentHeaderLargeMedia/Component'
+import { ContentQuoteBlock } from '@/blocks/BlogComponents/ContentQuote/Component'
+import { CardGridBlock } from './BlogComponents/CardGrid/Component'
+import { ImageGridBlock } from './BlogComponents/ImageGrid/Component'
 
 const blockComponents = {
-  content: ContentBlock,
+  column: ColumnBlock,
   hero: HeroBlock,
   heroGrid: HeroGridBlock,
   sponsors: SponsorsBlock,
   teamList: TeamListBlock,
   ticker: TickerBlock,
+  contentHeader: ContentHeaderBlock,
+  contentHeaderLargeMedia: ContentHeaderLargeMediaBlock,
+  contentText: ContentTextBlock,
+  contentTextMedia: ContentTextMediaBlock,
+  contentQuote: ContentQuoteBlock,
+  cardGrid: CardGridBlock,
+  imageGrid: ImageGridBlock,
 }
 
 export const RenderBlocks: React.FC<{

@@ -9,6 +9,19 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
+import { Column } from '../../blocks/Columns/config'
+import { Hero } from '@/blocks/Hero/config'
+import { HeroGrid } from '@/blocks/HeroGrid/config'
+import { Ticker } from '@/blocks/Ticker/config'
+import { TeamList } from '@/blocks/TeamList/config'
+import { Sponsors } from '@/blocks/Sponsors/config'
+import { ContentHeader } from '@/blocks/BlogComponents/ContentHeader/config'
+import { ContentHeaderLargeMedia } from '@/blocks/BlogComponents/ContentHeaderLargeMedia/config'
+import { ContentText } from '@/blocks/BlogComponents/ContentText/config'
+import { ContentTextMedia } from '@/blocks/BlogComponents/ContentTextMedia/config'
+import { ContentQuote } from '@/blocks/BlogComponents/ContentQuote/config'
+import { ImageGrid } from '@/blocks/BlogComponents/ImageGrid/config'
+import { CardGrid } from '@/blocks/BlogComponents/CardGrid/config'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -73,53 +86,36 @@ export const Projects: CollectionConfig<'projects'> = {
       type: 'tabs',
       tabs: [
         {
-          fields: [
-            {
-              name: 'heroImage',
-              type: 'upload',
-              relationTo: 'media',
-            },
-            {
-              name: 'content',
-              type: 'richText',
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                    HorizontalRuleFeature(),
-                  ]
-                },
-              }),
-              label: false,
-              required: true,
-            },
-          ],
-          label: 'Content',
+          fields: [],
+          label: 'Styling',
         },
         {
           fields: [
             {
-              name: 'relatedPosts',
-              type: 'relationship',
+              name: 'layout',
+              type: 'blocks',
+              blocks: [
+                Column,
+                Hero,
+                HeroGrid,
+                Sponsors,
+                Ticker,
+                TeamList,
+                ContentHeader,
+                ContentHeaderLargeMedia,
+                ContentText,
+                ContentTextMedia,
+                ContentQuote,
+                CardGrid,
+                ImageGrid,
+              ],
+              required: true,
               admin: {
-                position: 'sidebar',
+                initCollapsed: true,
               },
-              filterOptions: ({ id }) => {
-                return {
-                  id: {
-                    not_in: [id],
-                  },
-                }
-              },
-              hasMany: true,
-              relationTo: 'projects',
             },
           ],
-          label: 'Meta',
+          label: 'Content',
         },
         {
           name: 'meta',
@@ -170,39 +166,6 @@ export const Projects: CollectionConfig<'projects'> = {
         ],
       },
     },
-    {
-      name: 'authors',
-      type: 'relationship',
-      admin: {
-        position: 'sidebar',
-      },
-      hasMany: true,
-      relationTo: 'users',
-    },
-    // This field is only used to populate the user data via the `populateAuthors` hook
-    // This is because the `user` collection has access control locked to protect user privacy
-    // GraphQL will also not return mutated user data that differs from the underlying schema
-    {
-      name: 'populatedAuthors',
-      type: 'array',
-      access: {
-        update: () => false,
-      },
-      admin: {
-        disabled: true,
-        readOnly: true,
-      },
-      fields: [
-        {
-          name: 'id',
-          type: 'text',
-        },
-        {
-          name: 'name',
-          type: 'text',
-        },
-      ],
-    },
     ...slugField(),
   ],
   hooks: {
@@ -218,4 +181,5 @@ export const Projects: CollectionConfig<'projects'> = {
     },
     maxPerDoc: 50,
   },
+  dbName: 'proj',
 }

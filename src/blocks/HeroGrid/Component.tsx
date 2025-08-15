@@ -12,7 +12,7 @@ export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridTitle, gridIte
       )}
       {Array.isArray(gridItems) && gridItems.length > 0 && (
         <div
-          className="flex flex-col lg:grid grid-flow-col grid-cols-1 lg:grid-cols-4 lg:gap-x-8 gap-y-6"
+          className="flex flex-col xl:grid grid-flow-col grid-cols-1 lg:grid-cols-4 lg:gap-x-8 gap-y-6"
           style={{ gridTemplateRows: `repeat(${gridItems.length - 1}, 316px)` }}
         >
           {gridItems.map(({ link, media, cardTitles }, index) => {
@@ -24,12 +24,12 @@ export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridTitle, gridIte
                   className={`flex border group col-span-1 ${
                     index === 0
                       ? 'flex-col lg:col-start-1 lg:col-end-3 lg:row-span-full'
-                      : 'lg:col-start-3 lg:col-end-5'
+                      : 'lg:col-start-3 lg:col-end-5 min-h-[132px]'
                   } `}
                 >
                   <Media
                     resource={media}
-                    className={`overflow-hidden ${index === 0 ? 'lg:h-[83%] col-start-1 col-end-3' : 'h-[132px] lg:w-[267px] lg:h-full shrink-0 col-start-3 col-end-5'}`}
+                    className={`overflow-hidden ${index === 0 ? 'lg:h-[83%] col-start-1 col-end-3' : 'w-[132px] lg:w-[267px] lg:h-full shrink-0 col-start-3 col-end-5'}`}
                     imgClassName={`group-hover:scale-110 transition-[all] duration-scale ease-in-out object-cover h-full ${
                       index === 0
                         ? 'flex-col row-span-full'
@@ -41,9 +41,20 @@ export const HeroGridBlock: React.FC<HeroGridBlockProps> = ({ gridTitle, gridIte
                   >
                     <div className="flex flex-col gap-[.75rem]">
                       <h3 className="text-base lg:text-2xl w-fit">{cardTitles?.title}</h3>
-                      <p className="text-xs lg:text-base border-2 px-3 py-2 lg:px-4 border-dashed border-ash rounded-[1.875rem] w-fit">
-                        {cardTitles?.subtitle}
-                      </p>
+                      {cardTitles?.subtitles && (
+                        <div className="flex flex-row flex-wrap gap-2">
+                          {cardTitles.subtitles.map(({ subtitle }, subIndex) => {
+                            return (
+                              <p
+                                key={subIndex}
+                                className="text-xs lg:text-base border-2 px-3 py-2 lg:px-4 border-dashed border-ash rounded-[1.875rem] w-fit"
+                              >
+                                {subtitle && <>{subtitle}</>}
+                              </p>
+                            )
+                          })}
+                        </div>
+                      )}
                     </div>
                     <img
                       src="images/grid-arrow.svg"

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import Image from 'next/image'
+import { ChevronDown } from 'lucide-react'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const [submenuOpen, setSubMenuOpen] = useState(false)
@@ -77,12 +78,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                   >
                     {navItem.dropDownTitle}
                   </p>
-                  <img
-                    src="images/menu-chevron.svg"
-                    alt="Menu Chevron"
-                    className={`${submenuOpen ? 'rotate-180' : ''} w-[.8125rem] hidden lg:block`}
-                    aria-hidden
-                  />
+                  <ChevronDown className={`${submenuOpen ? 'rotate-180' : ''} hidden lg:block`} />
                   <nav
                     className={`flex flex-col ${submenuOpen ? 'lg:flex-row' : 'lg:hidden'} lg:absolute w-full left-0 top-full md:px-16 md:py-6 lg:bg-paper-200 items-center gap-4 lg:gap-[3rem] cursor-default`}
                   >

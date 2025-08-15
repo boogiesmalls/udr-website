@@ -18,6 +18,16 @@ const nextConfig = {
           protocol: url.protocol.replace(':', ''),
         }
       }),
+      {
+        hostname: 'localhost',
+        protocol: 'http',
+        port: '3000',
+      },
+      {
+        hostname: 'lmw.localhost',
+        protocol: 'http',
+        port: '3000',
+      },
     ],
   },
   webpack: (webpackConfig) => {
@@ -32,18 +42,39 @@ const nextConfig = {
   reactStrictMode: true,
   redirects,
   async rewrites() {
-    return [
-      {
+    const prodHost = process.env.VERCEL_PROJECT_PRODUCTION_URL
+
+    const beforeFiles = []
+
+    if (prodHost) {
+      const escapedHost = prodHost.replace(/\./g, '\\.')
+      console.log('✅ Adding production rule for:', escapedHost)
+
+      beforeFiles.push({
         source: '/',
         has: [
           {
             type: 'host',
-            value: '(?<slug>.*)\\.urbandataresponse\\.org',
+            value: `(?<slug>[^.]+)\\.${escapedHost}`,
           },
         ],
         destination: '/projects/:slug',
-      },
-    ]
+      })
+    }
+
+    beforeFiles.push({
+      source: '/',
+      has: [
+        {
+          type: 'host',
+          value: `(?<slug>[^.]+)\\.localhost(?::\\d+)?`,
+        },
+      ],
+      destination: '/projects/:slug',
+    })
+
+    console.log('📋 Final rewrite rules:', JSON.stringify(beforeFiles, null, 2))
+    return { beforeFiles: beforeFiles }
   },
 }
 

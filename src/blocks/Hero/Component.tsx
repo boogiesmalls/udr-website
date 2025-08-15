@@ -32,8 +32,8 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ links, mediaGroup, richTex
       {media && typeof media === 'object' && (
         <div className="flex justify-center order-1">
           <Media
-            className="order-1 lg:order-2 aspect-[4/5] w-full lg:w-[30rem] lg:h-[37.5rem] border overflow-hidden lg:flex-shrink-0"
-            imgClassName="w-full h-full object-cover"
+            className="order-1 lg:order-2 aspect-[4/5] w-full lg:w-[30rem] lg:h-[37.5rem] border border-[#BEBEBE] overflow-hidden lg:flex-shrink-0"
+            imgClassName="h-full object-cover"
             priority
             rounded={mediaRounded}
             resource={media}

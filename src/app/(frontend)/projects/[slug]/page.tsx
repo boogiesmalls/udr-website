@@ -5,7 +5,7 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
-import RichText from '@/components/RichText'
+import { RenderBlocks } from '@/blocks/RenderBlocks'
 
 import type { Project } from '@/payload-types'
 
@@ -47,20 +47,15 @@ export default async function Project({ params: paramsPromise }: Args) {
 
   if (!project) return <PayloadRedirects url={url} />
 
+  const { layout } = project
+
   return (
-    <article className="pt-16 pb-16">
+    <article>
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
-
-      {/* <PostHero post={post} /> */}
-
-      <div className="flex flex-col items-center gap-4 pt-8">
-        <div className="container">
-          <RichText className="max-w-[48rem] mx-auto" data={project.content} enableGutter={false} />
-        </div>
-      </div>
+      <RenderBlocks blocks={layout} />
     </article>
   )
 }

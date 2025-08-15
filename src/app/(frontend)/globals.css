@@ -97,6 +97,10 @@
   }
 }
 
+iframe {
+  @apply w-full h-full;
+}
+
 /* html {
   opacity: 0;
 }

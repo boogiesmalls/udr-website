@@ -144,7 +144,21 @@ export interface UserAuthOperations {
 export interface Page {
   id: number;
   title: string;
-  layout: (ContentBlock | HeroBlock | HeroGridBlock | SponsorsBlock | TickerBlock | TeamListBlock)[];
+  layout: (
+    | ColumnBlock
+    | HeroBlock
+    | HeroGridBlock
+    | SponsorsBlock
+    | TickerBlock
+    | TeamListBlock
+    | ContentHeaderBlock
+    | ContentHeaderLargeMediaBlock
+    | ContentTextBlock
+    | ContentTextMediaBlock
+    | ContentQuoteBlock
+    | CardGridBlock
+    | ImageGridBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -162,9 +176,9 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock".
+ * via the `definition` "ColumnBlock".
  */
-export interface ContentBlock {
+export interface ColumnBlock {
   contentTitle?: string | null;
   columns?:
     | {
@@ -189,7 +203,7 @@ export interface ContentBlock {
     | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'content';
+  blockType: 'column';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -250,23 +264,21 @@ export interface HeroBlock {
 export interface Project {
   id: number;
   title: string;
-  heroImage?: (number | null) | Media;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  relatedPosts?: (number | Project)[] | null;
+  layout: (
+    | ColumnBlock
+    | HeroBlock
+    | HeroGridBlock
+    | SponsorsBlock
+    | TickerBlock
+    | TeamListBlock
+    | ContentHeaderBlock
+    | ContentHeaderLargeMediaBlock
+    | ContentTextBlock
+    | ContentTextMediaBlock
+    | ContentQuoteBlock
+    | CardGridBlock
+    | ImageGridBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -276,18 +288,50 @@ export interface Project {
     description?: string | null;
   };
   publishedAt?: string | null;
-  authors?: (number | User)[] | null;
-  populatedAuthors?:
-    | {
-        id?: string | null;
-        name?: string | null;
-      }[]
-    | null;
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroGridBlock".
+ */
+export interface HeroGridBlock {
+  gridTitle: string;
+  gridItems?:
+    | {
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'projects';
+                value: number | Project;
+              } | null);
+          url?: string | null;
+        };
+        media: number | Media;
+        cardTitles?: {
+          title?: string | null;
+          subtitles?:
+            | {
+                subtitle?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -381,65 +425,6 @@ export interface Media {
       filename?: string | null;
     };
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  name?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeroGridBlock".
- */
-export interface HeroGridBlock {
-  gridTitle: string;
-  gridItems?:
-    | {
-        link?: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'projects';
-                value: number | Project;
-              } | null);
-          url?: string | null;
-        };
-        media: number | Media;
-        cardTitles?: {
-          title?: string | null;
-          subtitle?: string | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'heroGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -577,6 +562,339 @@ export interface TeamListBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'teamList';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentHeaderBlock".
+ */
+export interface ContentHeaderBlock {
+  mediaGroup?: {
+    mediaRounded?: ('none' | 'top' | 'left' | 'right' | 'bottom') | null;
+    media?: (number | null) | Media;
+  };
+  richText: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'projects';
+                value: number | Project;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentHeader';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentHeaderLargeMediaBlock".
+ */
+export interface ContentHeaderLargeMediaBlock {
+  richText: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  mediaGroup?: {
+    mode?: ('media' | 'embed') | null;
+    media?: (number | null) | Media;
+    iframe?: string | null;
+  };
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'projects';
+                value: number | Project;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentHeaderLargeMedia';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentTextBlock".
+ */
+export interface ContentTextBlock {
+  layout?: ('centered' | 'left' | 'right') | null;
+  subheading?: string | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'projects';
+                value: number | Project;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  richText: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentText';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentTextMediaBlock".
+ */
+export interface ContentTextMediaBlock {
+  layout?: ('left' | 'right') | null;
+  subheading?: string | null;
+  images?:
+    | {
+        media?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  richText: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'projects';
+                value: number | Project;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentTextMedia';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentQuoteBlock".
+ */
+export interface ContentQuoteBlock {
+  quoteType: 'singleQuote' | 'quoteColumns';
+  singleQuote?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  quoteColumns?:
+    | {
+        richText: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentQuote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardGridBlock".
+ */
+export interface CardGridBlock {
+  gridTitle?: string | null;
+  cardItems?:
+    | {
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'projects';
+                value: number | Project;
+              } | null);
+          url?: string | null;
+        };
+        gridTitles?: {
+          title?: string | null;
+          subtitles?:
+            | {
+                subtitle?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cardGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGridBlock".
+ */
+export interface ImageGridBlock {
+  images: {
+    media?: (number | null) | Media;
+    attribution?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imageGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -977,12 +1295,19 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
-        content?: T | ContentBlockSelect<T>;
+        column?: T | ColumnBlockSelect<T>;
         hero?: T | HeroBlockSelect<T>;
         heroGrid?: T | HeroGridBlockSelect<T>;
         sponsors?: T | SponsorsBlockSelect<T>;
         ticker?: T | TickerBlockSelect<T>;
         teamList?: T | TeamListBlockSelect<T>;
+        contentHeader?: T | ContentHeaderBlockSelect<T>;
+        contentHeaderLargeMedia?: T | ContentHeaderLargeMediaBlockSelect<T>;
+        contentText?: T | ContentTextBlockSelect<T>;
+        contentTextMedia?: T | ContentTextMediaBlockSelect<T>;
+        contentQuote?: T | ContentQuoteBlockSelect<T>;
+        cardGrid?: T | CardGridBlockSelect<T>;
+        imageGrid?: T | ImageGridBlockSelect<T>;
       };
   meta?:
     | T
@@ -1000,9 +1325,9 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock_select".
+ * via the `definition` "ColumnBlock_select".
  */
-export interface ContentBlockSelect<T extends boolean = true> {
+export interface ColumnBlockSelect<T extends boolean = true> {
   contentTitle?: T;
   columns?:
     | T
@@ -1066,7 +1391,12 @@ export interface HeroGridBlockSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
-              subtitle?: T;
+              subtitles?:
+                | T
+                | {
+                    subtitle?: T;
+                    id?: T;
+                  };
             };
         id?: T;
       };
@@ -1168,13 +1498,210 @@ export interface TeamListBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentHeaderBlock_select".
+ */
+export interface ContentHeaderBlockSelect<T extends boolean = true> {
+  mediaGroup?:
+    | T
+    | {
+        mediaRounded?: T;
+        media?: T;
+      };
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentHeaderLargeMediaBlock_select".
+ */
+export interface ContentHeaderLargeMediaBlockSelect<T extends boolean = true> {
+  richText?: T;
+  mediaGroup?:
+    | T
+    | {
+        mode?: T;
+        media?: T;
+        iframe?: T;
+      };
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentTextBlock_select".
+ */
+export interface ContentTextBlockSelect<T extends boolean = true> {
+  layout?: T;
+  subheading?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  richText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentTextMediaBlock_select".
+ */
+export interface ContentTextMediaBlockSelect<T extends boolean = true> {
+  layout?: T;
+  subheading?: T;
+  images?:
+    | T
+    | {
+        media?: T;
+        id?: T;
+      };
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentQuoteBlock_select".
+ */
+export interface ContentQuoteBlockSelect<T extends boolean = true> {
+  quoteType?: T;
+  singleQuote?: T;
+  quoteColumns?:
+    | T
+    | {
+        richText?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardGridBlock_select".
+ */
+export interface CardGridBlockSelect<T extends boolean = true> {
+  gridTitle?: T;
+  cardItems?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        gridTitles?:
+          | T
+          | {
+              title?: T;
+              subtitles?:
+                | T
+                | {
+                    subtitle?: T;
+                    id?: T;
+                  };
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGridBlock_select".
+ */
+export interface ImageGridBlockSelect<T extends boolean = true> {
+  images?:
+    | T
+    | {
+        media?: T;
+        attribution?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects_select".
  */
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
-  heroImage?: T;
-  content?: T;
-  relatedPosts?: T;
+  layout?:
+    | T
+    | {
+        column?: T | ColumnBlockSelect<T>;
+        hero?: T | HeroBlockSelect<T>;
+        heroGrid?: T | HeroGridBlockSelect<T>;
+        sponsors?: T | SponsorsBlockSelect<T>;
+        ticker?: T | TickerBlockSelect<T>;
+        teamList?: T | TeamListBlockSelect<T>;
+        contentHeader?: T | ContentHeaderBlockSelect<T>;
+        contentHeaderLargeMedia?: T | ContentHeaderLargeMediaBlockSelect<T>;
+        contentText?: T | ContentTextBlockSelect<T>;
+        contentTextMedia?: T | ContentTextMediaBlockSelect<T>;
+        contentQuote?: T | ContentQuoteBlockSelect<T>;
+        cardGrid?: T | CardGridBlockSelect<T>;
+        imageGrid?: T | ImageGridBlockSelect<T>;
+      };
   meta?:
     | T
     | {
@@ -1183,13 +1710,6 @@ export interface ProjectsSelect<T extends boolean = true> {
         description?: T;
       };
   publishedAt?: T;
-  authors?: T;
-  populatedAuthors?:
-    | T
-    | {
-        id?: T;
-        name?: T;
-      };
   slug?: T;
   slugLock?: T;
   updatedAt?: T;

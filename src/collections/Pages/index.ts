@@ -2,12 +2,19 @@ import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Content } from '../../blocks/Content/config'
+import { Column } from '../../blocks/Columns/config'
 import { Hero } from '@/blocks/Hero/config'
 import { HeroGrid } from '@/blocks/HeroGrid/config'
 import { Ticker } from '@/blocks/Ticker/config'
 import { TeamList } from '@/blocks/TeamList/config'
 import { Sponsors } from '@/blocks/Sponsors/config'
+import { ContentHeader } from '@/blocks/BlogComponents/ContentHeader/config'
+import { ContentHeaderLargeMedia } from '@/blocks/BlogComponents/ContentHeaderLargeMedia/config'
+import { ContentText } from '@/blocks/BlogComponents/ContentText/config'
+import { ContentTextMedia } from '@/blocks/BlogComponents/ContentTextMedia/config'
+import { ContentQuote } from '@/blocks/BlogComponents/ContentQuote/config'
+import { ImageGrid } from '@/blocks/BlogComponents/ImageGrid/config'
+import { CardGrid } from '@/blocks/BlogComponents/CardGrid/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -71,7 +78,21 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Content, Hero, HeroGrid, Sponsors, Ticker, TeamList],
+              blocks: [
+                Column,
+                Hero,
+                HeroGrid,
+                Sponsors,
+                Ticker,
+                TeamList,
+                ContentHeader,
+                ContentHeaderLargeMedia,
+                ContentText,
+                ContentTextMedia,
+                ContentQuote,
+                CardGrid,
+                ImageGrid,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

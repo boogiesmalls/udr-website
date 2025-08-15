@@ -7,8 +7,6 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { link } from '@/fields/link'
-
 const columnFields: Field[] = [
   {
     name: 'size',
@@ -50,9 +48,9 @@ const columnFields: Field[] = [
   },
 ]
 
-export const Content: Block = {
-  slug: 'content',
-  interfaceName: 'ContentBlock',
+export const Column: Block = {
+  slug: 'column',
+  interfaceName: 'ColumnBlock',
   fields: [
     {
       name: 'contentTitle',

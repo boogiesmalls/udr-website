@@ -2,13 +2,11 @@ import { cn } from '@/utilities/ui'
 import React from 'react'
 import RichText from '@/components/RichText'
 
-import type { ContentBlock as ContentBlockProps } from '@/payload-types'
-
-import { CMSLink } from '../../components/Link'
+import type { ColumnBlock as ContentBlockProps } from '@/payload-types'
 
 import Image from 'next/image'
 
-export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
+export const ColumnBlock: React.FC<ContentBlockProps> = (props) => {
   const { contentTitle, columns } = props
 
   const colsSpanClasses = {
