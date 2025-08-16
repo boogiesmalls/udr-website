@@ -47,7 +47,7 @@ export default async function Project({ params: paramsPromise }: Args) {
 
   if (!project) return <PayloadRedirects url={url} />
 
-  const { layout } = project
+  const { projectsLayout } = project
 
   return (
     <article>
@@ -55,7 +55,7 @@ export default async function Project({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
-      <RenderBlocks blocks={layout} />
+      <RenderBlocks blocks={projectsLayout} />
     </article>
   )
 }

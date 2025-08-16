@@ -48,5 +48,4 @@ export const CardGrid: Block = {
       ],
     },
   ],
-  dbName: 'cGrid',
 }

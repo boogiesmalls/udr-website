@@ -21,7 +21,7 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-marigold text-black text-base lg:text-2xl hover:bg-marigold-dark',
         link: 'text-primary items-start justify-start underline-offset-4 hover:underline',
-        outline: 'border border-ash hover:bg-card hover:text-accent-foreground',
+        outline: 'border border-ash hover:bg-ash hover:text-paper-100',
         secondary:
           'bg-secondary text-secondary-foreground text-xl lg:text-2xl hover:bg-secondary/80',
         ghost: 'hover:bg-card hover:text-accent-foreground',

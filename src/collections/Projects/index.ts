@@ -92,7 +92,7 @@ export const Projects: CollectionConfig<'projects'> = {
         {
           fields: [
             {
-              name: 'layout',
+              name: 'projectsLayout',
               type: 'blocks',
               blocks: [
                 Column,

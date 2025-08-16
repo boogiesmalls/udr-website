@@ -47,6 +47,7 @@ export const ContentHeaderLargeMedia: Block = {
               value: 'embed',
             },
           ],
+          dbName: 'media_mode',
         },
         {
           name: 'media',
@@ -75,5 +76,4 @@ export const ContentHeaderLargeMedia: Block = {
       },
     }),
   ],
-  dbName: 'cont_header_lg',
 }

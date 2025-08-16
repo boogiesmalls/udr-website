@@ -2,6 +2,7 @@ import React from 'react'
 
 import type { CardGridBlock as CardGridBlockProps } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
+import GridArrow from 'public/images/grid-arrow.svg'
 
 export const CardGridBlock: React.FC<CardGridBlockProps> = ({ gridTitle, cardItems }) => {
   return (
@@ -34,12 +35,7 @@ export const CardGridBlock: React.FC<CardGridBlockProps> = ({ gridTitle, cardIte
                       </div>
                     )}
                   </div>
-                  <img
-                    src="images/grid-arrow.svg"
-                    alt="Grid Arrow"
-                    aria-hidden
-                    className={`w-[36px] self-end`}
-                  />
+                  <img src={GridArrow.src} className={`w-[36px] self-end`} alt="" aria-hidden />
                 </CMSLink>
               )
             )

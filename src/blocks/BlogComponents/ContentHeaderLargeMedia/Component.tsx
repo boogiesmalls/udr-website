@@ -32,10 +32,7 @@ export const ContentHeaderLargeMediaBlock: React.FC<ContentHeaderLargeMediaBlock
           {links.map(({ link }, i) => {
             return (
               <li key={i}>
-                <CMSLink
-                  className="text-xl lg:text-3xl hover:bg-ash hover:text-paper-100"
-                  {...link}
-                />
+                <CMSLink className="text-xl lg:text-3xl" {...link} />
               </li>
             )
           })}

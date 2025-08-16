@@ -264,7 +264,7 @@ export interface HeroBlock {
 export interface Project {
   id: number;
   title: string;
-  layout: (
+  projectsLayout: (
     | ColumnBlock
     | HeroBlock
     | HeroGridBlock
@@ -1685,7 +1685,7 @@ export interface ImageGridBlockSelect<T extends boolean = true> {
  */
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
-  layout?:
+  projectsLayout?:
     | T
     | {
         column?: T | ColumnBlockSelect<T>;

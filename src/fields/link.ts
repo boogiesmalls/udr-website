@@ -139,6 +139,7 @@ export const link: LinkType = ({
       },
       defaultValue: 'default',
       options: appearanceOptionsToUse,
+      dbName: 'link_appearance',
     })
   }
 
