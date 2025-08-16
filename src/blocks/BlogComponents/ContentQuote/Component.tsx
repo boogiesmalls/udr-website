@@ -13,7 +13,7 @@ export const ContentQuoteBlock: React.FC<ContentQuoteBlockProps> = ({
     <div className="">
       {quoteType === 'singleQuote' && singleQuote && (
         <RichText
-          className="px-4 lg:px-[10.125rem] prose-p:text-xl lg:prose-p:text-[3.5rem] lg:prose-p:leading-[120%] underline-offset-8"
+          className="px-4 lg:px-[10.125rem] prose-p:text-3xl lg:prose-p:text-[3.5rem] lg:prose-p:leading-[120%] underline-offset-8 font-bold"
           data={singleQuote}
           enableGutter={false}
         />
