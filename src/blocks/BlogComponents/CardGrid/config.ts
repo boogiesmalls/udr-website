@@ -46,6 +46,9 @@ export const CardGrid: Block = {
           ],
         },
       ],
+      admin: {
+        initCollapsed: true,
+      },
     },
   ],
 }

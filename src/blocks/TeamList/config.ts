@@ -1,5 +1,5 @@
 import { Block } from 'payload'
-import { link } from '@/fields/link'
+import { linkGroup } from '@/fields/linkGroup'
 
 import {
   FixedToolbarFeature,
@@ -76,8 +76,12 @@ export const TeamList: Block = {
               type: 'text',
               label: 'Role and/or Job Title',
             },
-            link({
+            linkGroup({
               appearances: false,
+              overrides: {
+                maxRows: 1,
+                dbName: 'team_list_person_group_links',
+              },
             }),
           ],
         },
@@ -107,8 +111,11 @@ export const TeamList: Block = {
           type: 'text',
           label: 'Call to Action Title',
         },
-        link({
+        linkGroup({
           appearances: ['default'],
+          overrides: {
+            maxRows: 1,
+          },
         }),
       ],
       label: 'Call to Action Group',

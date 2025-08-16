@@ -14,19 +14,19 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
         {Items &&
           Items.map(({ mediaGroup, personGroup, richText }, index) => {
             const { mediaRound, media } = mediaGroup || {}
-            const { name, role, link } = personGroup || {}
+            const { name, role, links } = personGroup || {}
             return (
               <div
                 className={`flex flex-col lg:justify-between ${index === 0 ? 'lg:px-0 lg:pl-16' : 'lg:px-0 lg:pr-16'}`}
                 key={index}
               >
                 <div
-                  className={`lg:col-span-1 px-4 lg:px-0 ${index === 1 && ctaGroup ? 'lg:-my-[10rem]' : ''}`}
+                  className={`lg:col-span-1 px-4 lg:px-0 ${index === 1 && ctaGroup && ctaGroup.ctaTitle ? 'lg:-my-[10rem]' : ''}`}
                   key={index}
                 >
                   <Media
                     className="border overflow-hidden mb-12"
-                    imgClassName="aspect-square object-cover"
+                    imgClassName="aspect-square object-cover w-full"
                     priority
                     rounded={mediaRound}
                     resource={media}
@@ -37,11 +37,7 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
                       <p className="px-4 border border-ash border-dashed rounded-[30px] w-fit">
                         {role}
                       </p>
-                      {link.url && (
-                        <Link className="underline underline-offset-2 text-xl" href={link.url}>
-                          {link.label}
-                        </Link>
-                      )}
+                      {links && links.map((link, index) => <CMSLink key={index} {...link} />)}
                     </div>
                   </div>
                   {richText && (
@@ -52,10 +48,11 @@ export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaG
                     />
                   )}
                 </div>
-                {ctaGroup && index === 1 && (
+                {ctaGroup && ctaGroup.ctaTitle && index === 1 && (
                   <div className="flex flex-row mt-12 p-4 lg:p-8 lg:px-16 items-center justify-between border-t border-b lg:border border-feather bg-paper-200 col-start-2">
                     <p className="text-xl lg:text-2xl lg:text-[2rem]">{ctaGroup.ctaTitle}</p>
-                    <CMSLink {...ctaGroup.link} />
+                    {ctaGroup.links &&
+                      ctaGroup.links.map((link, index) => <CMSLink key={index} {...link} />)}
                   </div>
                 )}
               </div>

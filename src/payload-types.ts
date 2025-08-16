@@ -503,21 +503,26 @@ export interface TeamListBlock {
         personGroup: {
           name: string;
           role?: string | null;
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?:
-              | ({
-                  relationTo: 'pages';
-                  value: number | Page;
-                } | null)
-              | ({
-                  relationTo: 'projects';
-                  value: number | Project;
-                } | null);
-            url?: string | null;
-            label: string;
-          };
+          links?:
+            | {
+                link: {
+                  type?: ('reference' | 'custom') | null;
+                  newTab?: boolean | null;
+                  reference?:
+                    | ({
+                        relationTo: 'pages';
+                        value: number | Page;
+                      } | null)
+                    | ({
+                        relationTo: 'projects';
+                        value: number | Project;
+                      } | null);
+                  url?: string | null;
+                  label: string;
+                };
+                id?: string | null;
+              }[]
+            | null;
         };
         richText?: {
           root: {
@@ -537,27 +542,32 @@ export interface TeamListBlock {
         id?: string | null;
       }[]
     | null;
-  ctaGroup: {
+  ctaGroup?: {
     ctaTitle?: string | null;
-    link: {
-      type?: ('reference' | 'custom') | null;
-      newTab?: boolean | null;
-      reference?:
-        | ({
-            relationTo: 'pages';
-            value: number | Page;
-          } | null)
-        | ({
-            relationTo: 'projects';
-            value: number | Project;
-          } | null);
-      url?: string | null;
-      label: string;
-      /**
-       * Choose how the link should be rendered.
-       */
-      appearance?: 'default' | null;
-    };
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'projects';
+                  value: number | Project;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: 'default' | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -1465,14 +1475,19 @@ export interface TeamListBlockSelect<T extends boolean = true> {
           | {
               name?: T;
               role?: T;
-              link?:
+              links?:
                 | T
                 | {
-                    type?: T;
-                    newTab?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                        };
+                    id?: T;
                   };
             };
         richText?: T;
@@ -1482,15 +1497,20 @@ export interface TeamListBlockSelect<T extends boolean = true> {
     | T
     | {
         ctaTitle?: T;
-        link?:
+        links?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
             };
       };
   id?: T;

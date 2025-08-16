@@ -73,7 +73,6 @@ const nextConfig = {
       destination: '/projects/:slug',
     })
 
-    console.log('📋 Final rewrite rules:', JSON.stringify(beforeFiles, null, 2))
     return { beforeFiles: beforeFiles }
   },
 }
