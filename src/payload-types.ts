@@ -498,7 +498,7 @@ export interface TickerBlock {
  * via the `definition` "teamListBlock".
  */
 export interface TeamListBlock {
-  title?: string | null;
+  teamTitle?: string | null;
   Items?:
     | {
         mediaGroup?: {
@@ -1492,7 +1492,7 @@ export interface TickerBlockSelect<T extends boolean = true> {
  * via the `definition` "teamListBlock_select".
  */
 export interface TeamListBlockSelect<T extends boolean = true> {
-  title?: T;
+  teamTitle?: T;
   Items?:
     | T
     | {
