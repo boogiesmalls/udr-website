@@ -30,7 +30,7 @@ export const ContentTextMediaBlock: React.FC<ContentTextMediaBlockProps> = (prop
                 return (
                   <Media
                     key={i}
-                    className="text-xl w-1/2 lg:w-[304px]"
+                    className="text-xl w-1/2 lg:w-[304px] h-[201px]"
                     imgClassName="object-cover h-full"
                     resource={media}
                   />
@@ -41,7 +41,7 @@ export const ContentTextMediaBlock: React.FC<ContentTextMediaBlockProps> = (prop
         </div>
       )}
       <div
-        className={`flex flex-col gap-6 lg:gap-16 ${layout === 'right' && 'col-start-2'} ${layout === 'left' && 'col-start-1'} row-start-2`}
+        className={`flex flex-col gap-6 lg:gap-16 h-full ${layout === 'right' && 'col-start-2'} ${layout === 'left' && 'col-start-1'} row-start-2`}
       >
         {richText && <RichText data={richText} enableGutter={false} />}
         {Array.isArray(links) && links.length > 0 && (

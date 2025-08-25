@@ -54,7 +54,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         onClick={toggleMobileMenu}
       />
       <div
-        className={`bg-paper-100 fixed top-[83px] inset-0 lg:static lg:bg-none flex flex-col lg:flex-row gap-8 justify-center items-center h-[calc(100%-83px)] lg:h-full ${mobileMenuOpen ? '' : 'hidden lg:flex'}`}
+        className={`bg-background fixed top-[83px] inset-0 lg:static lg:bg-none flex flex-col lg:flex-row gap-8 justify-center items-center h-[calc(100%-83px)] lg:h-full ${mobileMenuOpen ? '' : 'hidden lg:flex'}`}
       >
         {navItems.map((navItem, index) => {
           const type = navItem.type

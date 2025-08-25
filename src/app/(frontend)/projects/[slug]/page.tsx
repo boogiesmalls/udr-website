@@ -9,9 +9,9 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 
 import type { Project } from '@/payload-types'
 
-// import { PostHero } from '@/heros/PostHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import PageClient from './page.client'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -47,11 +47,12 @@ export default async function Project({ params: paramsPromise }: Args) {
 
   if (!project) return <PayloadRedirects url={url} />
 
-  const { projectsLayout } = project
+  const { styling, projectsLayout } = project
 
   return (
-    <article>
+    <article className={`font-inter`}>
       {/* Allows redirects for valid pages too */}
+      <PageClient bgColor={styling?.backgroundColor} />
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}

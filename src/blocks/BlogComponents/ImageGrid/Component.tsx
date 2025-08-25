@@ -43,11 +43,11 @@ export const ImageGridBlock: React.FC<ImageGridBlockProps> = ({ images }) => {
           {images.map(({ media, attribution }, index) => (
             <div
               key={index}
-              className={`flex flex-col gap-4 lg:gap-8 ${index === 0 ? 'col-start-1 col-end-4 lg:col-end-6 row-span-full h-full' : 'lg:col-start-6 lg:col-end-10'} ${index == 1 ? '' : ''} ${index === 2 ? 'col-start-2 col-end-3' : ''}`}
+              className={`flex flex-col gap-4 lg:gap-8 ${index === 0 ? 'col-start-1 col-end-4 lg:col-end-7 row-span-full h-full' : 'lg:col-start-7 lg:col-end-10'} ${index == 1 ? '' : ''} ${index === 2 ? 'col-start-2 col-end-3' : ''}`}
             >
               <Media
-                className={`h-full w-full ${index === 0 ? '' : 'h-[200px] lg:h-[316px]'}`}
-                imgClassName="h-full object-cover"
+                className={`h-full w-full ${index === 0 ? '' : 'h-[200px] lg:h-[400px]'}`}
+                imgClassName="h-full w-full object-cover"
                 resource={media}
               />
               {attribution && (

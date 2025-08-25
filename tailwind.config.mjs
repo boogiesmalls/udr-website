@@ -62,13 +62,13 @@ const config = {
         marigold: '#FBAF3B',
         'marigold-dark': '#E68C02',
         feather: '#BEBEBE',
-        background: '#FFFBF4',
+        background: 'var(--background)',
         border: 'hsla(var(--border))',
         foreground: 'var(--foreground)',
       },
       fontFamily: {
-        mono: ['var(--font-geist-mono)'],
-        sans: ['var(--font-geist-sans)'],
+        acid: ['var(--font-acid-grotesk)'],
+        inter: ['var(--font-inter)'],
       },
       transitionDuration: {
         scale: '0.4s',

@@ -11,7 +11,7 @@ export async function Header() {
   const headerData: Header = await getCachedGlobal('header', 1)()
 
   return (
-    <header className="relative z-20 border-b-[1px] border-b-[#BEBEBE]">
+    <header className="relative z-20 border-b-[1px] border-b-[#BEBEBE] font-acid">
       <div className="px-4 lg:px-16 h-[5.125rem] flex justify-between items-center">
         <Link href="/">
           <Logo className="hidden lg:block" loading="eager" priority="high" />

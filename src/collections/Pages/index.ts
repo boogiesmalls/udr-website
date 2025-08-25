@@ -27,6 +27,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { FormBlock } from '@/blocks/Form/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -92,6 +93,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ContentQuote,
                 CardGrid,
                 ImageGrid,
+                FormBlock,
               ],
               required: true,
               admin: {

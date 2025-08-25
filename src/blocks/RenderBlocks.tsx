@@ -16,6 +16,7 @@ import { ContentHeaderLargeMediaBlock } from '@/blocks/BlogComponents/ContentHea
 import { ContentQuoteBlock } from '@/blocks/BlogComponents/ContentQuote/Component'
 import { CardGridBlock } from './BlogComponents/CardGrid/Component'
 import { ImageGridBlock } from './BlogComponents/ImageGrid/Component'
+import { FormBlock } from './Form/Component'
 
 const blockComponents = {
   column: ColumnBlock,
@@ -31,6 +32,7 @@ const blockComponents = {
   contentQuote: ContentQuoteBlock,
   cardGrid: CardGridBlock,
   imageGrid: ImageGridBlock,
+  formBlock: FormBlock,
 }
 
 export const RenderBlocks: React.FC<{

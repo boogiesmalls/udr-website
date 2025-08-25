@@ -2,16 +2,12 @@
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
 
-interface PageClientProps {
-  bgColor: string
-}
-
-const PageClient: React.FC<PageClientProps> = ({ bgColor }) => {
+const PageClient: React.FC = () => {
   /* Force the header to be dark mode while we have an image behind it */
 
   useEffect(() => {
-    document.documentElement.style.setProperty('--background', bgColor)
-  }, [bgColor])
+    document.documentElement.style.setProperty('--background', '#FFFBF4')
+  }, [])
   return <React.Fragment />
 }
 

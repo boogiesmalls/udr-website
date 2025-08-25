@@ -1,14 +1,5 @@
 import type { CollectionConfig } from 'payload'
 
-import {
-  BlocksFeature,
-  FixedToolbarFeature,
-  HeadingFeature,
-  HorizontalRuleFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-
 import { Column } from '../../blocks/Columns/config'
 import { Hero } from '@/blocks/Hero/config'
 import { HeroGrid } from '@/blocks/HeroGrid/config'
@@ -26,6 +17,7 @@ import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidateProject } from './hooks/revalidateProject'
+import { colorPickerField } from '@innovixx/payload-color-picker-field'
 
 import {
   MetaDescriptionField,
@@ -35,6 +27,8 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
+import { Form } from 'react-hook-form'
+import { FormBlock } from '@/blocks/Form/config'
 
 export const Projects: CollectionConfig<'projects'> = {
   slug: 'projects',
@@ -86,8 +80,16 @@ export const Projects: CollectionConfig<'projects'> = {
       type: 'tabs',
       tabs: [
         {
-          fields: [],
           label: 'Styling',
+          name: 'styling',
+          fields: [
+            colorPickerField({
+              name: 'backgroundColor',
+              label: 'Background Color',
+              defaultValue: '#FFFBF4',
+              required: true,
+            }),
+          ],
         },
         {
           fields: [
@@ -108,6 +110,7 @@ export const Projects: CollectionConfig<'projects'> = {
                 ContentQuote,
                 CardGrid,
                 ImageGrid,
+                FormBlock,
               ],
               required: true,
               admin: {

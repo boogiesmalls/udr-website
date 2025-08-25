@@ -29,22 +29,6 @@ export const Footer: GlobalConfig = {
       }),
       label: 'Footer Text',
     },
-    // {
-    //   name: 'navItems',
-    //   type: 'array',
-    //   fields: [
-    //     link({
-    //       appearances: false,
-    //     }),
-    //   ],
-    //   maxRows: 6,
-    //   admin: {
-    //     initCollapsed: true,
-    //     components: {
-    //       RowLabel: '@/Footer/RowLabel#RowLabel',
-    //     },
-    //   },
-    // },
   ],
   hooks: {
     afterChange: [revalidateFooter],
