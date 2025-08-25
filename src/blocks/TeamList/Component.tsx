@@ -6,10 +6,10 @@ import RichText from '@/components/RichText'
 import Link from 'next/link'
 import { CMSLink } from '@/components/Link'
 
-export const TeamListBlock: React.FC<TeamListBlockProps> = ({ teamTitle, Items, ctaGroup }) => {
+export const TeamListBlock: React.FC<TeamListBlockProps> = ({ title, Items, ctaGroup }) => {
   return (
     <div>
-      {teamTitle && <h2 className="text-3xl mb-12 px-4 lg:px-16">{teamTitle}</h2>}
+      {title && <h2 className="text-3xl mb-12 px-4 lg:px-16">{title}</h2>}
       <div className="flex flex-col lg:grid grid-cols-1 lg:grid-cols-2 gap-y-8 lg:gap-y-0 lg:gap-x-[7.0625rem]">
         {Items &&
           Items.map(({ mediaGroup, personGroup, richText }, index) => {

@@ -13,7 +13,7 @@ export const TeamList: Block = {
   interfaceName: 'teamListBlock',
   fields: [
     {
-      name: 'teamTitle',
+      name: 'title',
       type: 'text',
       label: 'List Title',
     },
@@ -80,7 +80,7 @@ export const TeamList: Block = {
               appearances: false,
               overrides: {
                 maxRows: 1,
-                dbName: 'team_list_group_links',
+                dbName: 'team_list_person_group_links',
               },
             }),
           ],
