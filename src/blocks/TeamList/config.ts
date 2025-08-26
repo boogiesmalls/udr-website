@@ -1,5 +1,6 @@
 import { Block } from 'payload'
 import { linkGroup } from '@/fields/linkGroup'
+import { link } from '@/fields/link'
 
 import {
   FixedToolbarFeature,
@@ -76,12 +77,8 @@ export const TeamList: Block = {
               type: 'text',
               label: 'Role and/or Job Title',
             },
-            linkGroup({
+            link({
               appearances: false,
-              overrides: {
-                maxRows: 1,
-                dbName: 'team_list_person_group_links',
-              },
             }),
           ],
         },
