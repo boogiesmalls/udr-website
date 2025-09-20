@@ -11,8 +11,6 @@ export const ContentHeaderLargeMediaBlock: React.FC<ContentHeaderLargeMediaBlock
   richText,
   links,
 }) => {
-  console.log('mediaGroup.hasBorder: ', Boolean(mediaGroup?.hasBorder))
-
   return (
     <div className="relative flex flex-col justify-center lg:items-center text-left lg:text-center px-4 lg:px-16 gap-[2.5rem] lg:gap-20">
       <RichText data={richText} enableGutter={false} />
