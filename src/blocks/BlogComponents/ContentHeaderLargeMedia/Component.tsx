@@ -11,6 +11,8 @@ export const ContentHeaderLargeMediaBlock: React.FC<ContentHeaderLargeMediaBlock
   richText,
   links,
 }) => {
+  console.log('mediaGroup.hasBorder: ', Boolean(mediaGroup?.hasBorder))
+
   return (
     <div className="relative flex flex-col justify-center lg:items-center text-left lg:text-center px-4 lg:px-16 gap-[2.5rem] lg:gap-20">
       <RichText data={richText} enableGutter={false} />
@@ -23,7 +25,7 @@ export const ContentHeaderLargeMediaBlock: React.FC<ContentHeaderLargeMediaBlock
       )}
       {mediaGroup && mediaGroup.mode === 'embed' && mediaGroup?.iframe && (
         <div
-          className="w-full h-[450px] lg:h-[660px] border border-[#BEBEBE] overflow-hidden"
+          className={`w-full h-[450px] lg:h-[660px] ${mediaGroup.hasBorder === 'true' ? 'border border-[#BEBEBE]' : ''}  overflow-hidden`}
           dangerouslySetInnerHTML={{ __html: mediaGroup.iframe }}
         ></div>
       )}

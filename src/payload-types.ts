@@ -646,6 +646,7 @@ export interface ContentHeaderLargeMediaBlock {
     [k: string]: unknown;
   };
   mediaGroup?: {
+    hasBorder?: ('true' | 'false') | null;
     mode?: ('media' | 'embed') | null;
     media?: (number | null) | Media;
     iframe?: string | null;
@@ -1577,6 +1578,7 @@ export interface ContentHeaderLargeMediaBlockSelect<T extends boolean = true> {
   mediaGroup?:
     | T
     | {
+        hasBorder?: T;
         mode?: T;
         media?: T;
         iframe?: T;

@@ -33,6 +33,23 @@ export const ContentHeaderLargeMedia: Block = {
       type: 'group',
       fields: [
         {
+          name: 'hasBorder',
+          label: 'Add Border to Media?',
+          type: 'radio',
+          defaultValue: 'true',
+          options: [
+            {
+              label: 'Yes',
+              value: 'true',
+            },
+            {
+              label: 'No',
+              value: 'false',
+            },
+          ],
+          dbName: 'large_media_has_border',
+        },
+        {
           name: 'mode',
           type: 'radio',
           defaultValue: 'media',
