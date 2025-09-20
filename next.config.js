@@ -38,7 +38,7 @@ const nextConfig = {
   reactStrictMode: true,
   redirects,
   async rewrites() {
-    const prodHost = process.env.VERCEL_PROJECT_PRODUCTION_URL
+    const prodHost = 'urbandataresponse.org'
 
     const beforeFiles = []
 
