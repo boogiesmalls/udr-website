@@ -46,16 +46,38 @@ const nextConfig = {
       const escapedHost = prodHost.replace(/\./g, '\\.')
       console.log('✅ Adding production rule for:', escapedHost)
 
-      beforeFiles.push({
-        source: '/',
-        has: [
-          {
-            type: 'host',
-            value: `(?<slug>[^.]+)\\.${escapedHost}`,
-          },
-        ],
-        destination: '/projects/:slug',
-      })
+      beforeFiles.push(
+        {
+          source: '/',
+          has: [
+            {
+              type: 'host',
+              value: 'urbandataresponse\\.org',
+            },
+          ],
+          destination: '/home',
+        },
+        {
+          source: '/',
+          has: [
+            {
+              type: 'host',
+              value: 'www\\.urbandataresponse\\.org',
+            },
+          ],
+          destination: '/home',
+        },
+        {
+          source: '/',
+          has: [
+            {
+              type: 'host',
+              value: `(?<slug>[^.]+)\\.${escapedHost}`,
+            },
+          ],
+          destination: '/projects/:slug',
+        },
+      )
     }
 
     beforeFiles.push({
