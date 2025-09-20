@@ -13,7 +13,7 @@ export async function Header() {
   return (
     <header className="relative z-20 border-b-[1px] border-b-[#BEBEBE] font-acid">
       <div className="px-4 lg:px-16 h-[5.125rem] flex justify-between items-center">
-        <Link href="/">
+        <Link href="https://www.urbandataresponse.org">
           <Logo className="hidden lg:block" loading="eager" priority="high" />
           <MobileLogo className="lg:hidden" loading="eager" priority="high" />
         </Link>
